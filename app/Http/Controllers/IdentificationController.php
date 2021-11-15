@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\MonthController;
 use GuzzleHttp\Middleware;
+use App\Http\Controllers\Controller;
 
 class IdentificationController extends Controller
 {
@@ -25,14 +26,15 @@ class IdentificationController extends Controller
    
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
+            $userId = Auth::user()->id;
+            $request->session()->put('id_user', $userId);
             return redirect()->route('accueil.dashboard');
+            // dd($request);
+
         }
   
         return redirect("connexion");
-        // $sessionMail = $request->input('mail');
-        // $request->session()->put('mail', "$sessionMail");
-        // dd($request);
-        // return redirect()->route('accueil.dashboard');
+
     }
 
     public function inscription()

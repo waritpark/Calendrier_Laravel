@@ -13,13 +13,13 @@ class CreateTCalendrierEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('t_calendrier_events', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('nom_event');
             $table->string('desc_event')->nullable();
             $table->dateTime('start_event');
             $table->dateTime('end_event');
-            $table->integer('user_id');
+            $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

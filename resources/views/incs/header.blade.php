@@ -14,10 +14,10 @@
         @auth
         <nav class="position-relative">
             <ul class="nav flex-row align-items-center">
-                <a class="text-sm-center nav-link text-dark" href=""><h1 class="h3 font-family-exo text-uppercase"><li>Calendar Project</li></h1></a>
-                <a class="text-sm-center nav-link text-dark" href=""><li>Mon calendrier</li></a>
+                <a class="text-sm-center nav-link text-dark" href="{{ route('accueil.dashboard') }}"><h1 class="h3 font-family-exo text-uppercase"><li>Calendar Project</li></h1></a>
+                <a class="text-sm-center nav-link text-dark" href="{{ route('accueil.dashboard') }}"><li>Mon calendrier</li></a>
                 <a class="text-sm-center nav-link text-dark" href=""><li>Nouvel événement</li></a>
-                <a class="text-sm-center nav-link text-dark" href=""><li>Mon compte</li></a>
+                <a class="text-sm-center nav-link text-dark" href="{{ route('compte.dashboard') }}"><li>Mon compte</li></a>
                 @if(Auth::user()->role===1)
                     <a class="text-sm-center nav-link text-dark" href=""><li>Statistiques</li></a>
                 @endif

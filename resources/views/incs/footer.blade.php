@@ -10,14 +10,21 @@
         </div>
     </footer>
     <script>
+        // désafficher les modales
         function removeSuccess() {
             document.getElementById("modal-success-event").classList.remove("d-block");
         }
-    </script>
-        <script>
+
+        // Afficher le formulaire d'ajout d'event
         function afficherForm() {
             document.getElementById("container-form-ajout-event").classList.toggle("d-none");
         }
+
+        // Afficher l'input password2 pour changer de mdp
+        function afficherPass() {
+            document.getElementById("pass2").classList.remove("d-none");
+        }
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

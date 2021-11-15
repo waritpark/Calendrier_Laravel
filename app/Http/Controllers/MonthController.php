@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Events;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MonthController extends Controller
 {
@@ -41,21 +43,23 @@ class MonthController extends Controller
      * //@return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        return view('dashboard');
+    {   
+
+        return view('dashboard', ['request'=>$request]);
+        //on peut remplacer le tableau ['request'=>$request] par la fonction compact()
     }
 
     public function viewMonth(Request $request) 
     {
         $month = $request->month;
         $year = $request->year;
-        return view('dashboard');
+        return view('dashboard', ['request'=>$request, 'month'=>$month, 'year'=>$year]);
     }
 
     public function viewDay(Request $request) 
     {
         $day = $request->day;
-        return view('day-evenement');
+        return view('day-evenement', ['day'=>$day]);
     }
 
     /**
