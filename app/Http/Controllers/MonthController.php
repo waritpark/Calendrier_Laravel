@@ -56,12 +56,6 @@ class MonthController extends Controller
         return view('dashboard', ['request'=>$request, 'month'=>$month, 'year'=>$year]);
     }
 
-    public function viewDay(Request $request) 
-    {
-        $day = $request->day;
-        return view('day-evenement', ['day'=>$day]);
-    }
-
     /**
      * Renvoie le premier jour du mois
      * @return \DateTimeImmutable

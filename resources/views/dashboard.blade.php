@@ -44,13 +44,13 @@ $end = $start->modify('+' . (6 + 7 *($weeks -1)) . ' days');
                         $id_user =  $request->session()->get('id_user');
                         $events = DB::table('events')
                         ->where('user_id', "=", $id_user)
-                        ->whereBetween('start_event', [$date->format('Y-m-d 00:00:00'),$date->format('Y-m-d 23:59:59')])
+                        ->whereBetween('start', [$date->format('Y-m-d 00:00:00'),$date->format('Y-m-d 23:59:59')])
                         ->get();
                     ?>
                     @foreach ($events as $event)                      
                         <div class="container-calendar-event d-flex align-items-center fs-6">
-                            <div><?= (new DateTimeImmutable($event->start_event))->format('H:i'); ?>&nbsp;-&nbsp;</div>
-                            <div><?= $event->nom_event ?></div>
+                            <div><?= (new DateTimeImmutable($event->start))->format('H:i'); ?>&nbsp;-&nbsp;</div>
+                            <div><?= $event->name ?></div>
                         </div>
                     @endforeach
                 </td>

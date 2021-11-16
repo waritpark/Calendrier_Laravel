@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MonthController;
 use App\Http\Controllers\CompteController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\IdentificationController;
 
 // route de base
@@ -33,8 +34,14 @@ Route::get('/dashboard', [MonthController::class, 'index'])->middleware('auth')-
 // route des pages de chaque mois
 Route::get('/dashboard{month}{year}', [MonthController::class, 'viewMonth'])->middleware('auth');
 
-// route pour afficher une journée
-Route::get('/day-evenement{day}', [MonthController::class, 'viewDay'])->middleware('auth');
+// route pour afficher le formulaire de creation d'event
+Route::get('/create-evenement', [EventsController::class, 'create'])->middleware('auth')->name('create.dashboard');
+
+// route pour le traitement du formulaire de creation d'event
+Route::post('/store-evenement', [EventsController::class, 'store'])->middleware('auth')->name('store.dashboard');
+
+// route pour afficher les events d'un jour
+Route::get('/day-evenement', [EventsController::class, 'viewDay'])->middleware('auth')->name('day.dashboard');
 
 // route pour afficher le compte
 Route::get('/compte', [CompteController::class, 'viewCompte'])->middleware('auth')->name('compte.dashboard');

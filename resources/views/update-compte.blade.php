@@ -16,15 +16,21 @@
         <label for="prenom" class="form-label">Prénom</label>
         <input type="text" class="form-control" name="prenom" id="prenom" value="<?= Auth::user()->prenom  ?>">
     </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Mot de passe</label>
-        <input type="password" onclick="afficherPass()" class="form-control" name="password" id="password" value="<?= Auth::user()->password  ?>">
+    <div class="mb-3 d-none" id="pass1">
+        <label for="password" class="form-label">Nouveau mot de passe</label>
+        <input type="password" disabled class="form-control" name="password" id="passwordCompte" value="">
     </div>
     <div class="mb-3 d-none" id="pass2">
         <label for="password2" class="form-label">Répétez le nouveau mot de passe</label>
-        <input type="password" class="form-control" name="password2" id="password2">
+        <div class="d-flex flex-row">
+            <input type="password" class="form-control" name="password2" id="password2">
+            <div class="btn btn-secondary ms-4" onclick="suppPass()">Annuler</div>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary mb-4">Modifier</button>
+    <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary mb-4">Enregistrer</button>
+        <div class="btn btn-secondary mb-4" id="btnPass" onclick="afficherPass()">Modifier le mot de passe</div>
+    </div>
 </form>
 
 @stop

@@ -23,6 +23,16 @@
         // Afficher l'input password2 pour changer de mdp
         function afficherPass() {
             document.getElementById("pass2").classList.remove("d-none");
+            document.getElementById("pass1").classList.remove("d-none");
+            document.getElementById("btnPass").classList.add("d-none");
+            document.getElementById("passwordCompte").removeAttribute("disabled","");
+        }
+
+        // Afficher l'input password2 pour changer de mdp
+        function suppPass() {
+            document.getElementById("pass2").classList.add("d-none");
+            document.getElementById("pass1").classList.add("d-none");
+            document.getElementById("btnPass").classList.remove("d-none");
         }
 
     </script>
