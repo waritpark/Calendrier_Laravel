@@ -44,16 +44,13 @@ class MonthController extends Controller
      */
     public function index(Request $request)
     {   
-
         return view('dashboard', ['request'=>$request]);
         //on peut remplacer le tableau ['request'=>$request] par la fonction compact()
     }
 
-    public function viewMonth(Request $request) 
+    public function viewMonth() 
     {
-        $month = $request->month;
-        $year = $request->year;
-        return view('dashboard', ['request'=>$request, 'month'=>$month, 'year'=>$year]);
+        return view('dashboard');
     }
 
     /**

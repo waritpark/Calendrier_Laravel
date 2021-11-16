@@ -41,7 +41,43 @@ class EventsController extends Controller
 
     public function viewDay(Request $request) 
     {
-        $day = $request->day;
-        return view('day-evenement', ['day'=>$day]);
+        //dd($request);
+        $years = $request->years;
+        $months = $request->months;
+        $days = $request->days;
+        $request->attributes->add(['years' => $years, 'months'=>$months, 'days'=>$days]);
+        return view('day-evenement', ['request'=>$request, 'years'=>$years, 'months'=>$months, 'days'=>$days]);
+    }
+
+    public function edit($id) 
+    {
+        $event=Events::find($id);
+        return view('edit-evenement', ['event'=>$event]);
+    }
+
+    public function update(Request $request, $id) {
+        // dd($id, $request);
+
+        $event=Events::find($id);
+        $name = $request->input('name');
+        $description = $request->input('description');
+        $date = $request->input('date');
+        $start = $request->input('start');
+        $start = date_create_from_format('Y-m-d H:i', $date. ' ' .$start)->format('Y-m-d H:i:s');
+        $end = $request->input('end');
+        $end = date_create_from_format('Y-m-d H:i', $date. ' ' .$end)->format('Y-m-d H:i:s');
+
+        $event->name = $name;
+        $event->description = $description;
+        $event->start = $start;
+        $event->end = $end;
+        $event->save();
+        return redirect()->route('accueil.dashboard');
+    }
+
+    public function delete(Request $request) {
+        $id = $request->id;
+        $request->attributes->add(['id' => $id]);
+        return view('delete-evenement', ['request'=>$request, 'id'=>$id]);
     }
 }

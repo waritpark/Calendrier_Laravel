@@ -11,6 +11,8 @@ Route::get('/', function () {
     return view('accueil');
 })->name('accueil');
 
+//////////----- ROUTES IDENTIFICATION -----////////////
+
 // routes de la page connexion et du traitement de la connexion
 Route::get('/connexion', [IdentificationController::class, 'connexion'])->name('connexion');
 Route::post('/connexion', [IdentificationController::class, 'connexionPost'])->name('connexion.post');
@@ -35,14 +37,23 @@ Route::get('/dashboard', [MonthController::class, 'index'])->middleware('auth')-
 Route::get('/dashboard{month}{year}', [MonthController::class, 'viewMonth'])->middleware('auth');
 
 // route pour afficher le formulaire de creation d'event
-Route::get('/create-evenement', [EventsController::class, 'create'])->middleware('auth')->name('create.dashboard');
+Route::get('dashboard/create-evenement', [EventsController::class, 'create'])->middleware('auth')->name('create.dashboard');
 
 // route pour le traitement du formulaire de creation d'event
-Route::post('/store-evenement', [EventsController::class, 'store'])->middleware('auth')->name('store.dashboard');
+Route::post('dashboard/store-evenement', [EventsController::class, 'store'])->middleware('auth')->name('store.dashboard');
 
 // route pour afficher les events d'un jour
-Route::get('/day-evenement', [EventsController::class, 'viewDay'])->middleware('auth')->name('day.dashboard');
+Route::get('dashboard/day-evenement/{years}-{months}-{days}', [EventsController::class, 'viewDay'])->middleware('auth')->name('day.dashboard');
+
+// route pour afficher l'edition un event 
+Route::get('dashboard/edit-evenement/{id}', [EventsController::class, 'edit'])->middleware('auth')->name('edit.dashboard');
+
+// route pour update un event 
+Route::put('dashboard/edit-evenement/{id}/update', [EventsController::class, 'update'])->middleware('auth')->name('update.dashboard');
+
+// route pour supprimer un event
+// Route::get('dashboard/delete-evenement{id}', [EventsController::class, 'delete'])->middleware('auth')->name('delete.dashboard');
 
 // route pour afficher le compte
-Route::get('/compte', [CompteController::class, 'viewCompte'])->middleware('auth')->name('compte.dashboard');
+Route::get('dashboard/compte', [CompteController::class, 'viewCompte'])->middleware('auth')->name('compte.dashboard');
 

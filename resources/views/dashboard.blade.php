@@ -36,9 +36,14 @@ $end = $start->modify('+' . (6 + 7 *($weeks -1)) . ' days');
             <?php 
             foreach($month->days as $k => $day): 
                 $date=$start->modify("+" . ($k + $i * 7). "days"); 
-                $isToday = date('Y-m-d') === $date->format('Y-m-d'); ?>
+                $isToday = date('Y-m-d') === $date->format('Y-m-d'); 
+
+                $years = $date->format('Y');
+                $months = $date->format('m');
+                $days = $date->format('d');
+                ?>
                 <td class="w-14 align-top position-relative td-month-<?= $month->toStringMonth() ?> <?= $month->withinMonth($date) ? '' : 'bg-second'; ?><?= $isToday ? 'ajout-event-'.$month->toStringMonth().'' : ''; ?>">
-                    <a class="position-absolute h-100 w-100 top-0 right-0" href="day-evenement.php?date=<?= $date->format('Y-m-d');?>"></a>
+                    <a class="position-absolute h-100 w-100 top-0 right-0" href="dashboard/day-evenement/<?=$years?>-<?=$months?>-<?=$days?>"></a>
                     <div class="fs-5"><?= $date->format('d');?></div>
                     <?php 
                         $id_user =  $request->session()->get('id_user');
