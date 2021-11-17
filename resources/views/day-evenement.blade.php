@@ -45,8 +45,8 @@ $events = DB::table('events')
                         <td><?php echo $event->name; ?></td>
                         <td><?php echo $event->description;?></td>
                         <td>
-                            <a class="btn text-black btn-warning bg-gradient p-2" href="{{ route('edit.dashboard', $event->id) }}">Modifier</a>
-                            <a class="btn text-white btn-danger bg-gradient p-2" href="{{ route('delete.dashboard', $event->id) }}">Supprimer</a>
+                            <a class="btn text-black btn-warning bg-gradient p-2" href="{{ route('edit.event.dashboard', $event->id) }}">Modifier</a>
+                            <a class="btn text-white btn-danger bg-gradient p-2" href="{{ route('delete.event.dashboard', $event->id) }}">Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -56,7 +56,7 @@ $events = DB::table('events')
     </div>
     <div class="col-12 d-none mt-4" id="container-form-ajout-event">
         <h2>Ajout d'un nouvel événement</h2>
-        <form action="{{ route('store.dashboard') }}" method="post" class="mt-4 form-ajout-event">
+        <form action="{{ route('store.event.dashboard') }}" method="post" class="mt-4 form-ajout-event">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Nom</label>

@@ -12,7 +12,7 @@ class EventsController extends Controller
     {
         return view('new-evenement');
     }
-    
+
     public function store(Request $request) {
         //dd($request);
         $validatedData = $request->validate([
@@ -53,7 +53,7 @@ class EventsController extends Controller
     public function edit($id) 
     {
         $event=Events::find($id);
-        return view('edit-evenement', ['event'=>$event]);
+        return view('update-evenement', ['event'=>$event]);
     }
 
     public function update(Request $request, $id) {

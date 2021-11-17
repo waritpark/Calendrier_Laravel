@@ -29,7 +29,7 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password">
+                <input type="password" autocomplete="off" class="form-control @error('password') is-invalid @enderror" name="password" id="password">
                 @error('password')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -37,13 +37,18 @@
             <div class="alert alert-secondary" id="passwordStrength">Jauge de fiabilité du mot de passe</div>
             <div class="mb-3">
                 <label for="password2" class="form-label">Répétez le mot de passe</label>
-                <input type="password" class="form-control @error('password2') is-invalid @enderror" name="password2" id="password2">
+                <div class="d-flex">
+                    <input type="password" autocomplete="off" class="form-control @error('password2') is-invalid @enderror" name="password2" id="password2">
+                    <button type="button" onclick="checkpass()" class="ms-2 btn text-white btn-primary">Vérification</button>
+                </div>
                 @error('password2')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="mt-2 alert alert-secondary" id="egalpass">Vérifiez si vos mots de passe sont identiques avec le bouton "Vérification".</div>
             <button type="submit" class="btn btn-primary mb-4">Inscription</button>
             </form>
         </div>
     </div>
+
 @endsection

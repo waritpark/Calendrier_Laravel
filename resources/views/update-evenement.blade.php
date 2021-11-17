@@ -8,7 +8,7 @@
 
 <div class="col-12 mt-4" id="container-form-ajout-event">
     <h2 class="h2">Modifier l'événement : </h2>
-    <form action="{{ route('update.dashboard', $event->id) }}" method="POST" class="mt-4 form-ajout-event">
+    <form action="{{ route('update.event.dashboard', $event->id) }}" method="POST" class="mt-4 form-ajout-event">
         @csrf
         @method('PUT')
         <div class="mb-3">

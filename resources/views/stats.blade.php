@@ -24,8 +24,8 @@
                 <td><?= $user->role_user; ?></td>
                 @if ($user->email != 'arthur@arthur.fr')
                     <td>
-                        <a class="btn btn-warning" href="{{-- edit.user.dashboard --}}">Modifier</a>
-                        <a class="btn btn-danger" href="{{-- destroy.user.dashboard --}}">Supprimer</a>
+                        <a class="btn btn-warning" href="{{ route('edit.user.dashboard', $user->id) }}">Modifier</a>
+                        <a class="btn btn-danger" href="{{ route('destroy.user.dashboard', $user->id) }}">Supprimer</a>
                     </td>
                 @endif
             </tr>

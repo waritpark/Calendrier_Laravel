@@ -17,9 +17,9 @@
                 <a class="text-sm-center nav-link text-dark" href="{{ route('accueil.dashboard') }}"><h1 class="h3 font-family-exo text-uppercase"><li>Calendar Project</li></h1></a>
                 <a class="text-sm-center nav-link text-dark" href="{{ route('accueil.dashboard') }}"><li>Mon calendrier</li></a>
                 <a class="text-sm-center nav-link text-dark" href="{{ route('new.event.dashboard') }}"><li>Nouvel événement</li></a>
-                <a class="text-sm-center nav-link text-dark" href="{{ route('compte.dashboard') }}"><li>Mon compte</li></a>
+                <a class="text-sm-center nav-link text-dark" href="{{ route('compte.user.dashboard') }}"><li>Mon compte</li></a>
                 @if(Auth::user()->role_user===1)
-                    <a class="text-sm-center nav-link text-dark" href="{{ route('stats.dashboard') }}"><li>Statistiques</li></a>
+                    <a class="text-sm-center nav-link text-dark" href="{{ route('stats.users.dashboard') }}"><li>Statistiques</li></a>
                 @endif
                 <a class="position-absolute right-70 text-sm-center nav-link text-dark" href="{{ route('deconnexion') }}"><li>Déconnexion</li></a>
             </ul>

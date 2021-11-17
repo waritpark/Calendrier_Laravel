@@ -3,11 +3,11 @@
 @section('content')
 
     <div class="mb-5 d-flex align-items-center justify-content-center">
-        <a class="arrow-rotate180" href="/dashboard/<?=$month->previousMonth()->month;?>-<?=$month->previousMonth()->year;?>">
+        <a class="arrow-rotate180" href="/calendar/dashboard/<?=$month->previousMonth()->month;?>-<?=$month->previousMonth()->year;?>">
             <img src="/images/arrow.png" class="arrow-btn">
         </a>
         <h1 class="mx-5 w-300 d-flex justify-content-center"><?php echo $month->toString(); ?></h1>
-        <a class="" href="/dashboard/<?=$month->nextMonth()->month;?>-<?=$month->nextMonth()->year;?>">
+        <a class="" href="/calendar/dashboard/<?=$month->nextMonth()->month;?>-<?=$month->nextMonth()->year;?>">
             <img src="/images/arrow.png" class="arrow-btn">
         </a>
     </div>  
@@ -30,7 +30,7 @@
                 $days = $date->format('d');
                 ?>
                 <td class="w-14 align-top position-relative td-month-<?= $month->toStringMonth() ?> <?= $month->withinMonth($date) ? '' : 'bg-second'; ?><?= $isToday ? 'ajout-event-'.$month->toStringMonth().'' : ''; ?>">
-                    <a class="position-absolute h-100 w-100 top-0 right-0" href="/dashboard/day-evenement/<?=$years?>-<?=$months?>-<?=$days?>"></a>
+                    <a class="position-absolute h-100 w-100 top-0 right-0" href="/calendar/dashboard/day-evenement/<?=$years?>-<?=$months?>-<?=$days?>"></a>
                     <div class="fs-5"><?= $date->format('d');?></div>
                     <?php 
                     // requete pour afficher les events dans les jours correspondant en fonction de l'utilisateur
