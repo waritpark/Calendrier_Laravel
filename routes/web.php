@@ -26,7 +26,7 @@ Route::get('/deconnexion', function () {
     //session()->forget();
     session()->flush();
     return redirect()->route('accueil');
-});
+})->name('deconnexion');
 
 //////////----- ROUTES DASHBOARD -----////////////
 
@@ -34,10 +34,10 @@ Route::get('/deconnexion', function () {
 Route::get('/dashboard', [MonthController::class, 'index'])->middleware('auth')->name('accueil.dashboard');
 
 // route des pages de chaque mois
-Route::get('/dashboard{month}{year}', [MonthController::class, 'viewMonth'])->middleware('auth');
+Route::get('dashboard/{month}-{year}', [MonthController::class, 'index'])->middleware('auth');
 
 // route pour afficher le formulaire de creation d'event
-Route::get('dashboard/create-evenement', [EventsController::class, 'create'])->middleware('auth')->name('create.dashboard');
+Route::get('dashboard/new-evenement', [EventsController::class, 'newEvent'])->middleware('auth')->name('new.event.dashboard');
 
 // route pour le traitement du formulaire de creation d'event
 Route::post('dashboard/store-evenement', [EventsController::class, 'store'])->middleware('auth')->name('store.dashboard');
@@ -52,8 +52,10 @@ Route::get('dashboard/edit-evenement/{id}', [EventsController::class, 'edit'])->
 Route::put('dashboard/edit-evenement/{id}/update', [EventsController::class, 'update'])->middleware('auth')->name('update.dashboard');
 
 // route pour supprimer un event
-// Route::get('dashboard/delete-evenement{id}', [EventsController::class, 'delete'])->middleware('auth')->name('delete.dashboard');
+Route::get('dashboard/delete-evenement/{id}', [EventsController::class, 'destroy'])->middleware('auth')->name('delete.dashboard');
 
 // route pour afficher le compte
 Route::get('dashboard/compte', [CompteController::class, 'viewCompte'])->middleware('auth')->name('compte.dashboard');
 
+// route pour afficher les stats du site
+Route::get('dashboard/stats', [IdentificationController::class, 'stats'])->middleware('auth')->name('stats.dashboard');

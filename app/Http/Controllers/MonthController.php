@@ -44,13 +44,20 @@ class MonthController extends Controller
      */
     public function index(Request $request)
     {   
-        return view('dashboard', ['request'=>$request]);
-        //on peut remplacer le tableau ['request'=>$request] par la fonction compact()
-    }
+        $year = $request->year;
+        $month = $request->month;
+        $start = $request->start;
+        $weeks = $request->weeks;
+        $end = $request->end;
 
-    public function viewMonth() 
-    {
-        return view('dashboard');
+        $month = new MonthController(intval($month) ?? null, intval($year) ?? null);
+        $start = $month->getStartingDay();
+        $start = $start->format('N')=== '1' ? $start : $month->getStartingDay()->modify('last monday');
+        $weeks = $month->getWeeks();
+        $end = $start->modify('+' . (6 + 7 *($weeks -1)) . ' days');
+
+        return view('dashboard', ['request'=>$request, 'month'=>$month, 'year'=>$year, 'start'=>$start, 'weeks'=>$weeks, 'end'=>$end]);
+        //on peut remplacer le tableau ['request'=>$request, ...] par la fonction compact()
     }
 
     /**

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\MonthController;
-use GuzzleHttp\Middleware;
-use App\Http\Controllers\Controller;
 
 class IdentificationController extends Controller
 {
@@ -56,15 +57,23 @@ class IdentificationController extends Controller
         $name = $request->input('name');
         $prenom = $request->input('prenom');
         $password = $request->input('password');
-        $role = 2;
+        $role_user = 2;
 
         $user->email = $email;
         $user->name = $name;
         $user->prenom = $prenom;
         $user->password = Hash::make($password);
-        $user->role = $role;
+        $user->role_user = $role_user;
         $user->save();
         return redirect()->route('connexion');
+    }
+
+    public function stats()
+    {
+        $users = DB::table('users')
+        ->orderBy('id')
+        ->get();
+        return view('stats', ['users'=>$users]);
     }
 
     public function deconnexion()

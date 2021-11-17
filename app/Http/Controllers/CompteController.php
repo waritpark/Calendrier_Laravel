@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class CompteController extends Controller
 {
-    public function viewCompte(){
+    public function viewCompte()
+    {
         return view('update-compte');
     }
 }

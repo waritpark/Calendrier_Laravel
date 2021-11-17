@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Events;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EventsController extends Controller
 {
+    public function newEvent()
+    {
+        return view('new-evenement');
+    }
+    
     public function store(Request $request) {
         //dd($request);
         $validatedData = $request->validate([
@@ -31,12 +37,7 @@ class EventsController extends Controller
         $event->end = $end;
         $event->user_id=$user_id;
         $event->save();
-        return redirect()->route('accueil.dashboard');
-    }
-
-    public function create()
-    {
-        return view('create-evenement');
+        return redirect()->route('accueil.dashboard')->with("create", "l'événement à bien été enregistré");
     }
 
     public function viewDay(Request $request) 
@@ -45,7 +46,7 @@ class EventsController extends Controller
         $years = $request->years;
         $months = $request->months;
         $days = $request->days;
-        $request->attributes->add(['years' => $years, 'months'=>$months, 'days'=>$days]);
+
         return view('day-evenement', ['request'=>$request, 'years'=>$years, 'months'=>$months, 'days'=>$days]);
     }
 
@@ -72,12 +73,13 @@ class EventsController extends Controller
         $event->start = $start;
         $event->end = $end;
         $event->save();
-        return redirect()->route('accueil.dashboard');
+        return redirect()->route('accueil.dashboard')->with("update", "l'événement à bien été modifié");
     }
 
-    public function delete(Request $request) {
-        $id = $request->id;
-        $request->attributes->add(['id' => $id]);
-        return view('delete-evenement', ['request'=>$request, 'id'=>$id]);
+    public function destroy($id) 
+    {
+        $event=Events::find($id);
+        $event->delete();
+        return redirect()->back()->with("destroy", "l'événement à bien été supprimé");
     }
 }

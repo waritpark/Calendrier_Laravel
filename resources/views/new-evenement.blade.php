@@ -2,10 +2,6 @@
 
 @section('content')
 
-<?php 
-
-?>
-
 <div class="col-12 mt-4" id="container-form-ajout-event">
     <h2 class="h2">Ajout d'un nouvel événement</h2>
     <form action="{{ route('store.dashboard') }}" method="post" class="mt-4 form-ajout-event">

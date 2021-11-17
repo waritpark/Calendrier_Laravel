@@ -26,6 +26,9 @@
 }
 
 /* table stats */
+#table-stats tbody tr:first-child {
+    border-bottom: 1px solid #dee2e6;
+}
 #table-stats th {
     width:16.6%;
 }

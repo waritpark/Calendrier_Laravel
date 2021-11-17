@@ -3,22 +3,22 @@
 @section('content')
 
 <?php  
-// pour afficher les evenements du jour
+// pour récuperer les variables 
 $years=$request->years;
 $months=$request->months;
 $days=$request->days;
 //dd($request);
 
-// concaténation et creation de la date avec les variables
+// concaténation pour recréer la date
 $date1 = ''.$years.'-'.$months.'-'.$days.'';
 $date = date_create($date1);
 
-// recuperer le jour actuel et l'inserer dans le formulaire
+// recuperer le jour actuel et l'insérer dans le formulaire
 $data = [
     'date' =>$date1 ?? date('Y-m-d')
 ];
 
-// requete 
+// requete pour afficher les events de l'utilisateur du jour de la date
 $id_user =  $request->session()->get('id_user');
 $events = DB::table('events')
 ->where('user_id', "=", $id_user)
@@ -26,7 +26,7 @@ $events = DB::table('events')
 ->get();
 ?>
 
-<?php setlocale(LC_TIME, 'fra_fra'); ?>
+<?php setlocale (LC_TIME, 'fr.utf8'); ?>
     <div class="col-12">
         <h2 class="w-max-content m-0 mb-4"><?= strftime('%A %d %B %Y', strtotime($date1));?></h2>
         <table class="table table-striped">
@@ -41,13 +41,12 @@ $events = DB::table('events')
             <tbody class="align-middle">
                 <?php foreach($events as $event): ?>
                     <tr class="align-items-center fs-6">
-                        <td><?php (new DateTimeImmutable($event->start))->format('H:i'); ?></td>
+                        <td><?php echo (new DateTimeImmutable($event->start))->format('H:i'); ?></td>
                         <td><?php echo $event->name; ?></td>
                         <td><?php echo $event->description;?></td>
                         <td>
-                            <?php $idedit = $event->id ?>
                             <a class="btn text-black btn-warning bg-gradient p-2" href="{{ route('edit.dashboard', $event->id) }}">Modifier</a>
-                            {{-- <a class="btn text-white btn-danger bg-gradient p-2" href="{{ route('delete.dashboard', $event->id) }}">Supprimer</a> --}}
+                            <a class="btn text-white btn-danger bg-gradient p-2" href="{{ route('delete.dashboard', $event->id) }}">Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
