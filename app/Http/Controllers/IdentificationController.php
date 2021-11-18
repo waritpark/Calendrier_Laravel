@@ -108,15 +108,19 @@ class IdentificationController extends Controller
         $user->email = $request->input('email');
         $user->name = $request->input('name');
         $user->prenom = $request->input('prenom');
+        $password = $request->input('password');
+        $password2 = $request->input('password2');
 
-        if ($request->missing('password')) {
+        if ($request->missing('password') || $request->missing('password2')) {
             $user->save();
-            return redirect()->route('accueil.dashboard')->with('update_compte', 'modification éffectué !');
-        } else {
-            $password = $request->input('password');
+            return redirect()->route('accueil.dashboard')->with('update_compte', 'modification éffectuée !');
+        } elseif ($password===$password2) {
             $user->password = Hash::make($password);
             $user->save();
-            return redirect()->route('accueil.dashboard')->with('update_compte', 'modification éffectué !');
+            return redirect()->route('accueil.dashboard')->with('update_compte', 'modification éffectuée !');
+        } else {
+            return redirect()->route('compte.user.dashboard')->with('error', 'modification échouée !');
+
         }
 
     }

@@ -7,10 +7,10 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Mail</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Role</th>
+            <th>Mails</th>
+            <th>Noms</th>
+            <th>Prénoms</th>
+            <th>Roles</th>
             <th>Actions</th>
         </tr>
     </thead>

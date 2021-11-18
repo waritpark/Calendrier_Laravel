@@ -27,7 +27,7 @@
         </div>
 
         <div class="d-flex justify-content-between" id="container-btn">
-            <div class="btn btn-warning mb-4 d-none" id="btnCheck" onclick="suppPass()">Annuler</div>
+            <div class="btn btn-secondary mb-4 d-none" id="btnCheck" onclick="suppPass()">Annuler</div>
             <div class="btn btn-secondary mb-4" id="btnPass" onclick="afficherPass()">Modifier le mot de passe</div>
             <button type="submit" class="btn btn-primary mb-4">Enregistrer</button>
         </div>

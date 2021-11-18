@@ -16,11 +16,13 @@
             var pass2 = document.getElementById('password2').value;
             var egalpass = document.getElementById("egalpass");
             if (pass !== pass2) {
-                $('#egalpass').removeClass().addClass('alert alert-danger').html('Les mots de passe ne sont pas identiques.');
-
+                egalpass.classList.remove('alert-success','alert-secondary');
+                egalpass.classList.add('alert','alert-danger');
+                egalpass.innerHTML='Les mots de passe ne sont pas identiques.';
             } else if (pass === pass2) {
-                $('#egalpass').removeClass().addClass('alert alert-success').html('Les mots de passe sont identiques.');
-
+                egalpass.classList.remove('alert-danger','alert-secondary');
+                egalpass.classList.add('alert','alert-success');
+                egalpass.innerHTML='Les mots de passe sont identiques.';
             }
         };
 
@@ -39,47 +41,15 @@
             document.getElementById("btnPass").classList.add("d-none");
             document.getElementById("btnCheck").classList.toggle("d-none");
             document.getElementById('pass1').innerHTML ='<div class="mb-3">'+
-                '<label for="password" class="form-label">Nouveau mot de passe</label>'+
-                '<input type="password" autocomplete="off" class="form-control mb-2" name="password" id="password">'+
-                '<div class="mt-2 alert alert-secondary" id="passwordStrength">Jauge de fiabilité du mot de passe</div>'+
+                    '<label for="password" class="form-label">Nouveau mot de passe</label>'+
+                    '<input type="password" autocomplete="off" class="form-control mb-2" onkeyup="logKey()" name="password" id="password">'+
+                    '<div class="mt-2 alert alert-secondary" id="passwordStrength">Jauge de fiabilité du mot de passe</div>'+
                 '</div>';
             document.getElementById('pass2').innerHTML ='<div class="mb-3">'+
                     '<label for="password2" class="form-label">Répétez le nouveau mot de passe</label>'+
-                    '<div class="d-flex flex-row mb-2">'+
-                        '<input type="password" autocomplete="off" class="form-control" name="password2" id="password2">'+
-                        '<div class="btn btn-primary ms-4" onclick="checkPass()">Vérification</div>'+
-                    '</div>'+
-                    '<div class="mt-2 alert alert-secondary" id="egalpass">Vérifiez si vos mots de passe sont identiques avec le bouton "Vérification".</div>'+
+                    '<input type="password" autocomplete="off" onkeyup="checkpass()" class="form-control" name="password2" id="password2">'+
+                    '<div class="mt-2 alert alert-secondary" id="egalpass">Vérification de l\'égalité vos mots de passe</div>'+
                 '</div>';
-
-            $('#password').on('keyup', function() {
-                var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
-                var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
-                var okRegex = new RegExp("(?=.{6,}).*", "g");
-
-                if (okRegex.test($(this).val()) === false) {
-                    $('#passwordStrength').removeClass().addClass('alert alert-danger').html('Le mot de passe doit contenir 6 caractères minimum.');
-                } else if (strongRegex.test($(this).val())) {
-                    $('#passwordStrength').removeClass().addClass('alert alert-success').html('Fiabilité du mot de passe : Excellent !');
-                } else if (mediumRegex.test($(this).val())) {
-                    $('#passwordStrength').removeClass().addClass('alert alert-info').html('Fiabilité du mot de passe : moyenne.');
-                } else {
-                    $('#passwordStrength').removeClass().addClass('alert alert-danger').html('Fiabilité du mot de passe : mauvais.');
-                }
-                return true;
-            });
-            function checkpass() {
-                var pass = document.getElementById('password').value;
-                var pass2 = document.getElementById('password2').value;
-                var egalpass = document.getElementById("egalpass");
-                if (pass !== pass2) {
-                    $('#egalpass').removeClass().addClass('alert alert-danger').html('Les mots de passe ne sont pas identiques.');
-
-                } else if (pass === pass2) {
-                    $('#egalpass').removeClass().addClass('alert alert-success').html('Les mots de passe sont identiques.');
-
-                }
-            };
         }
 
         // Afficher l'input password2 pour changer de mdp
@@ -100,7 +70,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('javascript/strongMdp.js') }}"></script>
 </body>
 </html>

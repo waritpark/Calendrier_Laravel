@@ -15,7 +15,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
+                    <input type="password" autocomplete="off" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
                     @error('password')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
