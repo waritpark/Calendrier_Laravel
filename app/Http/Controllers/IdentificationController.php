@@ -26,14 +26,15 @@ class IdentificationController extends Controller
         ]);
    
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            $userId = Auth::user()->id;
-            $request->session()->put('id_user', $userId);
-            return redirect()->route('accueil.dashboard');
-            // dd($request);
-
+        if ($request->filled('email') && $request->filled('password')) {
+            if (Auth::attempt($credentials)) {
+                $userId = Auth::user()->id;
+                $request->session()->put('id_user', $userId);
+                return redirect()->route('accueil.dashboard');
+                // dd($request); dd = dump and die
+            }
+            return redirect()->route("connexion")->with('error', 'Email ou mot de passe incorrect');
         }
-        return redirect()->route("connexion")->with('error', 'Email ou mot de passe incorrect');
     }
 
     public function inscription()
@@ -44,8 +45,8 @@ class IdentificationController extends Controller
     public function inscriptionPost(Request $request)
     {
         //dd($request);
-        $validatedData = $request->validate([
-            'email' => 'required|max:100',
+        $request->validate([
+            'email' => 'required|max:100|email',
             'name' => 'required|max:100',
             'prenom' => 'required|max:100',
             'password' => 'required|max:100|min:6'
@@ -57,18 +58,26 @@ class IdentificationController extends Controller
         $password = $request->input('password');
         $password2 = $request->input('password2');
         $role_user = 2;
-        if ($password == $password2) {
-            $user->email = $email;
-            $user->name = $name;
-            $user->prenom = $prenom;
-            $user->password = Hash::make($password);
-            $user->role_user = $role_user;
-            $user->save();
-            return redirect()->route('connexion');
+        // condition isset et empty
+        if ($request->filled('email') && $request->filled('name') && $request->filled('prenom') && $request->filled('password') && $request->filled('password2')) {
+            // condition de l'égalité des mdp
+            if ($password === $password2) {
+                $user->email = $email;
+                $user->name = $name;
+                $user->prenom = $prenom;
+                $user->password = Hash::make($password);
+                $user->role_user = $role_user;
+                $user->save();
+                return redirect()->route('connexion');
+            }
+            else {
+                return redirect()->back()->with('error', 'les mots de passe doivent être identique !');
+            }
         }
-        else {
-            return redirect()->route('inscription')->with('error', 'les mots de passe doivent être identique !');
-        }
+        // le else est en commentaire car il y a deja un retour si les champs ne sont pas correctement remplis, cela ferait 2 erreurs affichés pour la meme erreur
+        // else {
+        //     return redirect()->back()->with('error', 'Tous les champs doivent être remplis !');
+        // }
     }
 
     public function stats()
@@ -87,13 +96,26 @@ class IdentificationController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'email' => 'required|max:100|email',
+            'name' => 'required|max:100',
+            'prenom' => 'required|max:100',
+            'role_user' => 'required|max:1'
+        ]);
         $user = User::find($id);
         $user->email = $request->input('email');
         $user->name = $request->input('name');
         $user->prenom = $request->input('prenom');
         $user->role_user = $request->input('role_user');
-        $user->save();
-        return redirect()->route('stats.users.dashboard')->with('update_user', 'modification éffectué !');
+        // condition isset et empty
+        if($request->filled('email') && $request->filled('name') && $request->filled('prenom') && $request->filled('role_user')) {
+            $user->save();
+            return redirect()->route('stats.users.dashboard')->with('update_user', 'modification éffectué !');
+        }
+        // le else est en commentaire car il y a deja un retour si les champs ne sont pas correctement remplis, cela ferait 2 erreurs affichés pour la meme erreur
+        // else {
+        //     return redirect()->back()->with('error', 'Tous les champs doivent être remplis !');
+        // }
     }
 
     public function viewCompte()
@@ -103,6 +125,11 @@ class IdentificationController extends Controller
 
     public function updateCompte(Request $request)
     {
+        $request->validate([
+            'email' => 'required|max:100|email',
+            'name' => 'required|max:100',
+            'prenom' => 'required|max:100',
+        ]);
         $id = $request->session()->get('id_user');
         $user = User::find($id);
         $user->email = $request->input('email');
@@ -110,19 +137,32 @@ class IdentificationController extends Controller
         $user->prenom = $request->input('prenom');
         $password = $request->input('password');
         $password2 = $request->input('password2');
-
-        if ($request->missing('password') || $request->missing('password2')) {
-            $user->save();
-            return redirect()->route('accueil.dashboard')->with('update_compte', 'modification éffectuée !');
-        } elseif ($password===$password2) {
-            $user->password = Hash::make($password);
-            $user->save();
-            return redirect()->route('accueil.dashboard')->with('update_compte', 'modification éffectuée !');
-        } else {
-            return redirect()->route('compte.user.dashboard')->with('error', 'modification échouée !');
-
+        // condition isset et empty
+        if($request->filled('email') && $request->filled('name') && $request->filled('prenom')) {
+            // condition sans les mdp
+            if ($request->missing('password') || $request->missing('password2')) {
+                $user->save();
+                return redirect()->route('accueil.dashboard')->with('update_compte', 'modification éffectuée !');
+            } 
+            // condition avec les mdp
+            elseif ($request->filled('password') && $request->filled('password2') && $password===$password2) {
+                $request->validate([
+                    'password' => 'required|max:100|min:6',
+                    'password2' => 'required|max:100|min:6'
+                ]);
+                $user->password = Hash::make($password);
+                $user->save();
+                return redirect()->route('accueil.dashboard')->with('update_compte', 'modification éffectuée !');
+            }
+            // les autres possibilites
+            else {
+                return redirect()->back()->with('error', 'modification échouée !');
+            }
         }
-
+        // le else est en commentaire car il y a deja un retour si les champs ne sont pas correctement remplis, cela ferait 2 erreurs affichés pour la meme erreur
+        // else {
+        //     return redirect()->back()->with('error', 'Tous les champs doivent être remplis !');
+        // }
     }
 
     public function destroyUser($id) 

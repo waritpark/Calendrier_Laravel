@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('content')
-<div class="col-6">
+<div class="col-6 m-auto">
     <h2>Modifier les informations</h2>
     <form action="{{ route('update.compte.dashboard') }}" method="post" class="mt-4">
         @csrf
@@ -25,7 +25,6 @@
         <div id="pass2">
 
         </div>
-
         <div class="d-flex justify-content-between" id="container-btn">
             <div class="btn btn-secondary mb-4 d-none" id="btnCheck" onclick="suppPass()">Annuler</div>
             <div class="btn btn-secondary mb-4" id="btnPass" onclick="afficherPass()">Modifier le mot de passe</div>

@@ -27,6 +27,8 @@
                         <a class="btn btn-warning" href="{{ route('edit.user.dashboard', $user->id) }}">Modifier</a>
                         <a class="btn btn-danger" href="{{ route('destroy.user.dashboard', $user->id) }}">Supprimer</a>
                     </td>
+                @else
+                    <td></td>
                 @endif
             </tr>
         @endforeach

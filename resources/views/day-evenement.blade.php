@@ -2,30 +2,6 @@
 
 @section('content')
 
-<?php  
-// pour récuperer les variables 
-$years=$request->years;
-$months=$request->months;
-$days=$request->days;
-//dd($request);
-
-// concaténation pour recréer la date
-$date1 = ''.$years.'-'.$months.'-'.$days.'';
-$date = date_create($date1);
-
-// recuperer le jour actuel et l'insérer dans le formulaire
-$data = [
-    'date' =>$date1 ?? date('Y-m-d')
-];
-
-// requete pour afficher les events de l'utilisateur du jour de la date
-$id_user =  $request->session()->get('id_user');
-$events = DB::table('events')
-->where('user_id', "=", $id_user)
-->whereBetween('start', [$date->format('Y-m-d 00:00:00'),$date->format('Y-m-d 23:59:59')])
-->get();
-?>
-
 <?php setlocale (LC_TIME, 'fr.utf8'); ?>
     <div class="col-12">
         <h2 class="w-max-content m-0 mb-4"><?= strftime('%A %d %B %Y', strtotime($date1));?></h2>
