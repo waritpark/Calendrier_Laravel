@@ -10,7 +10,7 @@
         <a class="" href="/calendar/dashboard/<?=$month->nextMonth()->month;?>-<?=$month->nextMonth()->year;?>">
             <img src="/images/arrow.png" class="arrow-btn">
         </a>
-    </div>  
+    </div>
 
     <table class="table table-bordered" id="calendar-table">
         <tr>
@@ -20,10 +20,10 @@
         </tr>
         <?php for($i = 0; $i < $weeks; $i++) {  ?>
             <tr>
-            <?php 
-            foreach($month->days as $k => $day): 
-                $date=$start->modify("+" . ($k + $i * 7). "days"); 
-                $isToday = date('Y-m-d') === $date->format('Y-m-d'); 
+            <?php
+            foreach($month->days as $k => $day):
+                $date= $start->modify("+" . ($k + $i * 7). "days");
+                $isToday = date('Y-m-d') === $date->format('Y-m-d');
 
                 $years = $date->format('Y');
                 $months = $date->format('m');
@@ -32,15 +32,12 @@
                 <td class="w-14 align-top position-relative td-month-<?= $month->toStringMonth() ?> <?= $month->withinMonth($date) ? '' : 'bg-second'; ?><?= $isToday ? 'ajout-event-'.$month->toStringMonth().'' : ''; ?>">
                     <a class="position-absolute h-100 w-100 top-0 right-0" href="/calendar/dashboard/day-evenement/<?=$years?>-<?=$months?>-<?=$days?>"></a>
                     <div class="fs-5"><?= $date->format('d');?></div>
-                    <?php 
+                    <?php
                     // requete pour afficher les events dans les jours correspondant en fonction de l'utilisateur
-                        $id_user =  $request->session()->get('id_user');
-                        $events = DB::table('events')
-                        ->where('user_id', "=", $id_user)
-                        ->whereBetween('start', [$date->format('Y-m-d 00:00:00'),$date->format('Y-m-d 23:59:59')])
-                        ->get();
+                        $id_user = $request->session()->get('id_user');
+                        $events = reqListEvents($id_user, $date);
                     ?>
-                    @foreach ($events as $event)                      
+                    @foreach ($events as $event)
                         <div class="container-calendar-event d-flex align-items-center fs-6">
                             <div><?= (new DateTimeImmutable($event->start))->format('H:i'); ?>&nbsp;-&nbsp;</div>
                             <div><?= $event->name ?></div>

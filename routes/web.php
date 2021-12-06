@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MonthController;
-use App\Http\Controllers\CompteController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\IdentificationController;
 
@@ -49,10 +48,10 @@ Route::post('calendar/dashboard/store-evenement', [EventsController::class, 'sto
 // route pour afficher les events d'un jour
 Route::get('calendar/dashboard/day-evenement/{years}-{months}-{days}', [EventsController::class, 'viewDay'])->middleware('auth')->name('day.event.dashboard');
 
-// route pour afficher l'edition un event 
+// route pour afficher l'edition un event
 Route::get('calendar/dashboard/update-evenement/{id}', [EventsController::class, 'edit'])->middleware('auth')->name('edit.event.dashboard');
 
-// route pour update un event 
+// route pour update un event
 Route::put('calendar/dashboard/update-evenement/{id}/update', [EventsController::class, 'update'])->middleware('auth')->name('update.event.dashboard');
 
 // route pour supprimer un event
@@ -61,17 +60,17 @@ Route::get('calendar/dashboard/delete-evenement/{id}', [EventsController::class,
 // route pour afficher le compte
 Route::get('calendar/dashboard/compte', [IdentificationController::class, 'viewCompte'])->middleware('auth')->name('compte.user.dashboard');
 
-// route pour update le compte de l'utilisateur 
+// route pour update le compte de l'utilisateur
 Route::put('calendar/dashboard/update/compte', [IdentificationController::class, 'updateCompte'])->middleware('auth')->name('update.compte.dashboard');
 
 // route pour afficher les users du site
 Route::get('calendar/dashboard/stats', [IdentificationController::class, 'stats'])->middleware('auth')->name('stats.users.dashboard');
 
-// route pour afficher le formulaire de modification d'un utilisateur 
+// route pour afficher le formulaire de modification d'un utilisateur
 Route::get('calendar/dashboard/edit/user/{id}', [IdentificationController::class, 'edit'])->middleware('auth')->name('edit.user.dashboard');
 
-// route pour update un utilisateur 
+// route pour update un utilisateur
 Route::put('calendar/dashboard/update/user/{id}', [IdentificationController::class, 'update'])->middleware('auth')->name('update.user.dashboard');
 
-// route pour supprimer un utilisateur 
+// route pour supprimer un utilisateur
 Route::get('calendar/dashboard/destroy/user/{id}', [IdentificationController::class, 'destroyUser'])->middleware('auth')->name('destroy.user.dashboard');
