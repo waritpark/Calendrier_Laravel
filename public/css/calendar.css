@@ -19,7 +19,7 @@
 .arrow-right {
     transform: rotate(-30deg);
     left: -3px;
-    top: 4px;  
+    top: 4px;
 } */
 /* .arrow-left, .arrow-right {
     height: 3px;
@@ -150,6 +150,10 @@
     color: rgb(197, 197, 197);
 }
 
+.meteo-img {
+    width: 60px;
+    height: 60px;
+}
 /* formulaire d'ajout d'événement */
 .form-ajout-event {
     width: 500px;

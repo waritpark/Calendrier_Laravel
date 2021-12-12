@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MonthController;
+use App\Http\Controllers\MeteoController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\IdentificationController;
 
@@ -13,6 +14,12 @@ Route::get('/', function () {
 Route::get('/calendar', function () {
     return view('accueil');
 });
+
+//////////----- ROUTES TESTS -----////////////
+
+// route pour tester l'api meteo
+Route::get('calendar/dashboard/meteo', [MeteoController::class, 'tomorrow'])->name('index.meteo');
+
 
 //////////----- ROUTES IDENTIFICATION -----////////////
 

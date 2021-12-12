@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Events;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\MeteoController;
+use App\Events\MeteoEvent;
 
 class MonthController extends Controller
 {
@@ -36,14 +38,14 @@ class MonthController extends Controller
         $this->month = $month;
         $this->year = $year;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
      * //@return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {   
+    {
         $year = $request->year;
         $month = $request->month;
         $start = $request->start;
@@ -55,7 +57,7 @@ class MonthController extends Controller
         $start = $start->format('N')=== '1' ? $start : $month->getStartingDay()->modify('last monday');
         $weeks = $month->getWeeks();
         $end = $start->modify('+' . (6 + 7 *($weeks -1)) . ' days');
-
+        // dd($request);
         return view('dashboard', ['request'=>$request, 'month'=>$month, 'year'=>$year, 'start'=>$start, 'weeks'=>$weeks, 'end'=>$end]);
         //on peut remplacer le tableau ['request'=>$request, ...] par la fonction compact()
     }
