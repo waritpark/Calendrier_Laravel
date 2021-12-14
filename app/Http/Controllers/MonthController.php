@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Events;
+use App\Events\MeteoEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\MeteoController;
-use App\Events\MeteoEvent;
 
 class MonthController extends Controller
 {
@@ -51,14 +52,48 @@ class MonthController extends Controller
         $start = $request->start;
         $weeks = $request->weeks;
         $end = $request->end;
+        $datePlus1 = $request->datePlus1;
+        $tomorrow1 = $request->tomorrow1;
+        $newDate1 = $request->newDate1;
+        $datePlus2 = $request->datePlus2;
+        $tomorrow2 = $request->tomorrow2;
+        $newDate2 = $request->newDate2;
+        $datePlus3 = $request->datePlus3;
+        $tomorrow3 = $request->tomorrow3;
+        $newDate3 = $request->newDate3;
 
+        
+        $datePlus1 = date('Y-m-d 12:00:00', strtotime('+1 day'));
+        $tomorrow1 = date('Y-m-d', strtotime('+1 day'));
+        $newDate1 = new DateTime($tomorrow1);
+        $datePlus2 = date('Y-m-d 12:00:00', strtotime('+2 days'));
+        $tomorrow2 = date('Y-m-d', strtotime('+2 days'));
+        $newDate2 = new DateTime($tomorrow2);
+        $datePlus3 = date('Y-m-d 12:00:00', strtotime('+3 days'));
+        $tomorrow3 = date('Y-m-d', strtotime('+3 days'));
+        $newDate3 = new DateTime($tomorrow3);
         $month = new MonthController(intval($month) ?? null, intval($year) ?? null);
         $start = $month->getStartingDay();
         $start = $start->format('N')=== '1' ? $start : $month->getStartingDay()->modify('last monday');
         $weeks = $month->getWeeks();
         $end = $start->modify('+' . (6 + 7 *($weeks -1)) . ' days');
         // dd($request);
-        return view('dashboard', ['request'=>$request, 'month'=>$month, 'year'=>$year, 'start'=>$start, 'weeks'=>$weeks, 'end'=>$end]);
+        return view('dashboard', [
+        'request'=>$request, 
+        'month'=>$month, 
+        'year'=>$year, 
+        'start'=>$start, 
+        'weeks'=>$weeks, 
+        'end'=>$end, 
+        'datePlus1'=>$datePlus1, 
+        'tomorrow1'=>$tomorrow1, 
+        'newDate1'=>$newDate1, 
+        'datePlus2'=>$datePlus2, 
+        'tomorrow2'=>$tomorrow2, 
+        'newDate2'=>$newDate2, 
+        'datePlus3'=>$datePlus3, 
+        'tomorrow3'=>$tomorrow3, 
+        'newDate3'=>$newDate3]);
         //on peut remplacer le tableau ['request'=>$request, ...] par la fonction compact()
     }
 

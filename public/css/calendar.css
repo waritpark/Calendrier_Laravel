@@ -154,8 +154,19 @@
     width: 60px;
     height: 60px;
 }
+.meteo-img-event {
+    width: 130px;
+    height: 130px;
+}
 /* formulaire d'ajout d'événement */
 .form-ajout-event {
     width: 500px;
 }
 
+/* table stats */
+#table-stats tbody tr:first-child {
+    border-bottom: 1px solid #dee2e6;
+}
+#table-stats th {
+    width:16.6%;
+}

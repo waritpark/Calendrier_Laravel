@@ -32,7 +32,7 @@ class EventsController extends Controller
         $end = date_create_from_format('Y-m-d H:i', $date. ' ' .$end)->format('Y-m-d H:i:s');
         $user_id = $request->session()->get('id_user');
         // condition isset et empty
-        if ($request->filled('name') && $request->filled('description') && $request->filled('date') && $request->filled('start') && $request->filled('end')) {
+        if ($request->filled('name') && $request->filled('date') && $request->filled('start') && $request->filled('end')) {
             // condition de l'heure du début et de fin
             if ($request->input('start') < $request->input('end')) {
                 $event->name = $name;
