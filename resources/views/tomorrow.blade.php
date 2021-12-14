@@ -26,7 +26,7 @@
 //---------- affiche l'image de la météo et les degres d'apres demain à 12:00:00
 $datePlus2 = date('Y-m-d 12:00:00', strtotime('+2 days'));
 $tomorrow2 = date('Y-m-d', strtotime('+2 days'));
-foreach ($meteo['list'] as $dateTomorrow2):
+foreach ($tomorrow['list'] as $dateTomorrow2):
     if ($dateTomorrow2['dt_txt'] == $datePlus2): ?>
         <p>hello</p>
         <img class="" src="http://openweathermap.org/img/wn/<?php echo $dateTomorrow2['weather'][0]['icon'] ?>@2x.png" alt="meteo after tomorrow">

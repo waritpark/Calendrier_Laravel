@@ -18,10 +18,10 @@ Route::get('/calendar', function () {
 //////////----- ROUTES TESTS -----////////////
 
 // route pour tester l'api meteo d'aujourd'hui
-Route::get('calendar/dashboard/meteocurrent', [MeteoController::class, 'today'])->name('meteo.current');
+Route::get('calendar/current', [MeteoController::class, 'current']);
 
 // route pour tester l'api meteo des prochains jours
-Route::get('calendar/dashboard/meteo', [MeteoController::class, 'tomorrow'])->name('meteo.tomorrow');
+Route::get('calendar/tomorrow', [MeteoController::class, 'tomorrow']);
 
 
 //////////----- ROUTES IDENTIFICATION -----////////////

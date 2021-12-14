@@ -34,52 +34,14 @@
                     <a class="position-absolute h-100 w-100 top-0 right-0" href="/calendar/dashboard/day-evenement/<?=$years?>-<?=$months?>-<?=$days?>"></a>
                     <?php
                     
-                    // Affiche l'image de la météo du jour actuel
-                    $meteo = meteoCurl();
-                    // dd($meteo);
-                    foreach ($meteo["meteoCurrent"]["weather"] as $weather):
+                        // Affiche l'image de la météo du jour actuel
                         if ($isToday == $date): ?>
-                            <img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/<?php echo $weather["icon"] ?>@2x.png" alt="meteo today">
+                            <span id="meteocurrent"></span>
                         <?php
                         endif;
-                    endforeach;
 
-                    // Affiche l'image de la météo du lendemain à 12:00
-                    
-                    // $datePlus1 = date('Y-m-d 12:00:00', strtotime('+1 day'));
-                    // $tomorrow1 = date('Y-m-d', strtotime('+1 day'));
-                    // $newDate1 = new DateTime($tomorrow1);
-                    //$newDate->add(new DateInterval('P1D')); // P1D means a period of 1 day
-                    // $fomattedDate = $newDate->format('Y-m-d'); // conversion en string
-                    // dd($date, $newDate, $fomattedDate); // tests
-                    if ($newDate1 == $date):
-                        foreach ($meteo['meteoTomorrow']['list'] as $dateTomorrow1):
-                            if ($dateTomorrow1['dt_txt'] == $datePlus1): ?>
-                             <img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/<?php echo $dateTomorrow1['weather'][0]['icon'] ?>@2x.png" alt="meteo tomorrow">
-                             <?php
-                            endif;
-                        endforeach;
-                    endif;
 
-                    // Affiche l'image de la météo d'apres demain à 12:00
-                    if ($newDate2 == $date):
-                        foreach ($meteo['meteoTomorrow']['list'] as $dateTomorrow2):
-                            if ($dateTomorrow2['dt_txt'] == $datePlus2): ?>
-                             <img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/<?php echo $dateTomorrow2['weather'][0]['icon'] ?>@2x.png" alt="meteo after tomorrow">
-                             <?php
-                            endif;
-                        endforeach;
-                    endif;
-
-                    // Affiche l'image de la météo d'apres d'apres demain à 12:00
-                    if ($newDate3 == $date):
-                        foreach ($meteo['meteoTomorrow']['list'] as $dateTomorrow3):
-                            if ($dateTomorrow3['dt_txt'] == $datePlus3): ?>
-                             <img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/<?php echo $dateTomorrow3['weather'][0]['icon'] ?>@2x.png" alt="meteo after tomorrow">
-                             <?php
-                            endif;
-                        endforeach;
-                    endif;
+                        
                     ?>
 
                     <div class="fs-5"><?= $date->format('d');?></div>
@@ -99,4 +61,59 @@
             </tr>
         <?php } ?>
     </table>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function domReady(current, tomorrow) {
+            if (document.readyState === 'complete') {
+                current();
+                tomorrow();
+
+            } else {
+                document.addEventListener('DOMContentLoaded', current);
+                document.addEventListener('DOMContentLoaded', tomorrow);
+            }
+        }
+
+        domReady(function() {
+            $.ajax({
+                url : 'http://api.openweathermap.org/data/2.5/weather',
+                data : { id : "2969562", units : "metric", lang : "fr", appid : "f4d090607714c839e119246f24a205f1", mode : "json" },
+                dataType:'json',
+                success : current,
+                error : currentErreur
+            });
+
+            function current(data) {
+                var iconcurrent = data.weather[0].icon;
+                document.getElementById("meteocurrent").innerHTML = '<img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/'+iconcurrent+'@2x.png" alt="meteo today">'
+            }
+    
+            function currentErreur(jqXHR, textStatus, errorThrown) {
+                alert("Erreur " + errorThrown + " : " + textStatus);
+            }
+        });
+
+        domReady(function() {
+            $.ajax({
+                url : 'http://api.openweathermap.org/data/2.5/forecast',
+                data : { id : "2969562", units : "metric", lang : "fr", appid : "f4d090607714c839e119246f24a205f1", mode : "json" },
+                dataType:'json',
+                success : tomorrow,
+                error : tomorrowErreur
+            });
+
+            function tomorrow(data) {
+                icontomorrow = data.list[2].dt_txt;
+                console.log(icontomorrow);
+                console.log(data);
+                // document.getElementById("icontomorrow").innerHTML = '<img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/'+icontomorrow+'@2x.png" alt="meteo today">'
+            }
+            function tomorrowErreur(jqXHR, textStatus, errorThrown) {
+                alert("Erreur " + errorThrown + " : " + textStatus);
+            }
+        });
+
+
+
+    </script>
 @endsection
