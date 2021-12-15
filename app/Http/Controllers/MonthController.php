@@ -52,7 +52,16 @@ class MonthController extends Controller
         $start = $request->start;
         $weeks = $request->weeks;
         $end = $request->end;
+        $newDate1 = $request->newDate1;
+        $newDate2 = $request->newDate2;
+        $newDate3 = $request->newDate3;
 
+        $tomorrow1 = date('Y-m-d', strtotime('+1 day'));
+        $newDate1 = new DateTime($tomorrow1);
+        $tomorrow2 = date('Y-m-d', strtotime('+2 day'));
+        $newDate2 = new DateTime($tomorrow2);
+        $tomorrow3 = date('Y-m-d', strtotime('+3 day'));
+        $newDate3 = new DateTime($tomorrow3);
         $month = new MonthController(intval($month) ?? null, intval($year) ?? null);
         $start = $month->getStartingDay();
         $start = $start->format('N')=== '1' ? $start : $month->getStartingDay()->modify('last monday');
@@ -65,7 +74,10 @@ class MonthController extends Controller
         'year'=>$year, 
         'start'=>$start, 
         'weeks'=>$weeks, 
-        'end'=>$end]);
+        'end'=>$end,
+        'newDate1'=>$newDate1,
+        'newDate2'=>$newDate2,
+        'newDate3'=>$newDate3]);
         //on peut remplacer le tableau ['request'=>$request, ...] par la fonction compact()
     }
 

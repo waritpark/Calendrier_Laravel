@@ -5,13 +5,11 @@
 // 
 // --- dashboard.blade.php ---
 // 
-// 
-
-// Affiche l'image de la météo du lendemain à 12:00
+// Affiche l'image de la météo de demain à 12:00
 // if ($newDate1 == $date):
 //     foreach ($meteo['meteoTomorrow']['list'] as $dateTomorrow1):
 //         if ($dateTomorrow1['dt_txt'] == $datePlus1): ?>
-               <!-- <img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/<?php // echo $dateTomorrow1['weather'][0]['icon'] ?>@2x.png" alt="meteo tomorrow"> -->
+               <!-- <img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/<?php // echo $dateTomorrow1['weather'][0]['icon'] ?>@2x.png" alt="meteo after tomorrow"> -->
                <?php
 //         endif;
 //     endforeach;
