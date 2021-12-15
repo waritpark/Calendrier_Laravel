@@ -29,7 +29,7 @@ domReady(function() {
         }
     }
 
-    function currentErreur(jqXHR, textStatus, errorThrown) {
+    function currentErreur(textStatus, errorThrown) {
         alert("Erreur " + errorThrown + " : " + textStatus);
     }
 });
@@ -122,7 +122,7 @@ domReady(function() {
         }
     }
 
-    function tomorrowErreur(jqXHR, textStatus, errorThrown) {
+    function tomorrowErreur(textStatus, errorThrown) {
         alert("Erreur " + errorThrown + " : " + textStatus);
     }
 });

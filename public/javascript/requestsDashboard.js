@@ -23,7 +23,7 @@ domReady(function() {
         document.getElementById("meteocurrent").innerHTML = '<img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/'+iconcurrent+'@2x.png" alt="meteo today">'
     }
 
-    function currentErreur(jqXHR, textStatus, errorThrown) {
+    function currentErreur(textStatus, errorThrown) {
         alert("Erreur " + errorThrown + " : " + textStatus);
     }
 });
@@ -95,7 +95,7 @@ domReady(function() {
         });
     }
 
-    function tomorrowErreur(jqXHR, textStatus, errorThrown) {
+    function tomorrowErreur(textStatus, errorThrown) {
         alert("Erreur " + errorThrown + " : " + textStatus);
     }
 });
