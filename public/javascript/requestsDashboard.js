@@ -19,12 +19,13 @@ domReady(function() {
     });
 
     function current(data) {
+        // console.log(data);
         var iconcurrent = data.weather[0].icon;
         document.getElementById("meteocurrent").innerHTML = '<img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/'+iconcurrent+'@2x.png" alt="meteo today">'
     }
 
-    function currentErreur(textStatus, errorThrown) {
-        alert("Erreur " + errorThrown + " : " + textStatus);
+    function currentErreur() {
+        alert("Erreur ");
     }
 });
 
@@ -95,7 +96,7 @@ domReady(function() {
         });
     }
 
-    function tomorrowErreur(textStatus, errorThrown) {
-        alert("Erreur " + errorThrown + " : " + textStatus);
+    function tomorrowErreur() {
+        alert("Erreur ");
     }
 });
