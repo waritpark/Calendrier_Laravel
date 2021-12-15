@@ -20,8 +20,8 @@ class MeteoController extends Controller
         // ->json();
         $current = file_get_contents('https://api.openweathermap.org/data/2.5/weather?id=2969562&units=metric&lang=fr&appid=f4d090607714c839e119246f24a205f1');
         $current = json_decode($current, true);
-        dd($current);
-        // return view('current', ['current'=>$current]);
+        // dd($current);
+        return view('current', ['current'=>$current]);
     }
 
     // tests avec file_get_contents

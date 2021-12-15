@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Events;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,13 +55,26 @@ class EventsController extends Controller
         $years = $request->years;
         $months = $request->months;
         $days = $request->days;
+        $newDate = $request->newDate;
+        $newDate1 = $request->newDate1;
+        $newDate2 = $request->newDate2;
+        $newDate3 = $request->newDate3;
+
+        $today = date('Y-m-d');
+        $newDate = new DateTime($today);
+        $tomorrow1 = date('Y-m-d', strtotime('+1 day'));
+        $newDate1 = new DateTime($tomorrow1);
+        $tomorrow2 = date('Y-m-d', strtotime('+2 day'));
+        $newDate2 = new DateTime($tomorrow2);
+        $tomorrow3 = date('Y-m-d', strtotime('+3 day'));
+        $newDate3 = new DateTime($tomorrow3);
 
         // concaténation pour recréer la date
         $date1 = ''.$years.'-'.$months.'-'.$days.'';
         $date = date_create($date1);
 
         // recuperer le jour actuel et l'insérer dans le formulaire
-        $data = [
+        $dataDate = [
             'date' =>$date1 ?? date('Y-m-d')
         ];
 
@@ -71,7 +85,20 @@ class EventsController extends Controller
         ->whereBetween('start', [$date->format('Y-m-d 00:00:00'),$date->format('Y-m-d 23:59:59')])
         ->get();
 
-        return view('day-evenement', ['request'=>$request, 'years'=>$years, 'months'=>$months, 'days'=>$days, 'date'=>$date, 'date1'=>$date1, 'data'=>$data,'events'=>$events]);
+        return view('day-evenement', [
+            'request'=>$request, 
+            'years'=>$years, 
+            'months'=>$months, 
+            'days'=>$days, 
+            'date'=>$date, 
+            'date1'=>$date1, 
+            'dataDate'=>$dataDate,
+            'events'=>$events,
+            'newDate'=>$newDate,
+            'newDate1'=>$newDate1,
+            'newDate2'=>$newDate2,
+            'newDate3'=>$newDate3
+        ]);
     }
 
     public function edit($id) 

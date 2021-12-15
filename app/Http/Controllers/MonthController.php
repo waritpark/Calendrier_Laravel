@@ -69,15 +69,16 @@ class MonthController extends Controller
         $end = $start->modify('+' . (6 + 7 *($weeks -1)) . ' days');
         // dd($request);
         return view('dashboard', [
-        'request'=>$request, 
-        'month'=>$month, 
-        'year'=>$year, 
-        'start'=>$start, 
-        'weeks'=>$weeks, 
-        'end'=>$end,
-        'newDate1'=>$newDate1,
-        'newDate2'=>$newDate2,
-        'newDate3'=>$newDate3]);
+            'request'=>$request, 
+            'month'=>$month, 
+            'year'=>$year, 
+            'start'=>$start, 
+            'weeks'=>$weeks, 
+            'end'=>$end,
+            'newDate1'=>$newDate1,
+            'newDate2'=>$newDate2,
+            'newDate3'=>$newDate3
+        ]);
         //on peut remplacer le tableau ['request'=>$request, ...] par la fonction compact()
     }
 
