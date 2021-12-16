@@ -11,7 +11,7 @@
             <img src="/images/arrow.png" class="arrow-btn">
         </a>
     </div>
-
+<?php echo $response ?>
     <table class="table table-bordered" id="calendar-table">
         <tr>
         <?php foreach($month->days as $s): ?>

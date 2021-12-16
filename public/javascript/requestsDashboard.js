@@ -97,6 +97,6 @@ domReady(function() {
     }
 
     function tomorrowErreur() {
-        alert("Erreur ");
+        alert("Erreur");
     }
 });

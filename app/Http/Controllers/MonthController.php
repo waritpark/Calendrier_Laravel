@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DateTime;
 use App\Models\Events;
 use App\Events\MeteoEvent;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\MeteoController;
@@ -86,7 +87,8 @@ class MonthController extends Controller
      * Renvoie le premier jour du mois
      * @return \DateTimeImmutable
      */
-    public function getStartingDay(): \DateTimeInterface {
+    public function getStartingDay(): \DateTimeInterface 
+    {
         return new \DateTimeImmutable("{$this->year}-{$this->month}-01");
     }
 
@@ -94,7 +96,8 @@ class MonthController extends Controller
      * Retourne le mois en toute lettre et l'année en chiffre
      * @return string
      */
-    public function toString (): string {
+    public function toString (): string 
+    {
        return $this->months[$this->month - 1] . ' ' . $this->year;
     }
 
@@ -102,15 +105,17 @@ class MonthController extends Controller
      * Retourne seulement le mois en toute lettre
      * @return string
      */
-    public function toStringMonth (): string {
+    public function toStringMonth (): string 
+    {
         return $this->months[$this->month - 1];
-     }
+    }
 
     /**
      * Retourne le nombre de semaine dans le mois
      * @return int
      */
-    public function getWeeks(): int {
+    public function getWeeks(): int 
+    {
         $start = $this->getStartingDay();
         $end = $start->modify('+1 month -1 day');
         $startWeek = intval($start->format('W'));
@@ -130,7 +135,8 @@ class MonthController extends Controller
      * @param \DateTimeInterface $date
      * @return bool
      */
-    public function withinMonth (\DateTimeInterface $date): bool {
+    public function withinMonth (\DateTimeInterface $date): bool 
+    {
         return $this->getStartingDay()->format('Y-m') === $date->format('Y-m');
     }
 
@@ -138,7 +144,8 @@ class MonthController extends Controller
      * Renvoie le mois suivant
      * @return MonthController
      */
-    public function nextMonth(): MonthController {
+    public function nextMonth(): MonthController 
+    {
         $month = $this->month + 1;
         $year = $this->year;
         if ($month > 12) {
@@ -152,7 +159,8 @@ class MonthController extends Controller
      * Renvoie le mois précédent
      * @return MonthController;
      */
-    public function previousMonth(): MonthController {
+    public function previousMonth(): MonthController 
+    {
         $month = $this->month - 1;
         $year = $this->year;
         if ($month < 1) {
