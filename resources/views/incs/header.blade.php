@@ -10,33 +10,33 @@
     <title>Calendrier</title>
 </head>
 <body>
-    <header class="container-fluid py-3 bg-light">
+    <header class="container-fluid bg-black-header">
         @auth
         <nav class="position-relative">
-            <ul class="nav flex-row align-items-center">
-                <a class="text-sm-center nav-link text-dark" href="{{ route('accueil.dashboard') }}"><h1 class="h3 font-family-exo text-uppercase"><li>Calendar Project</li></h1></a>
-                <a class="text-sm-center nav-link text-dark" href="{{ route('accueil.dashboard') }}"><li>Mon calendrier</li></a>
-                <a class="text-sm-center nav-link text-dark" href="{{ route('new.event.dashboard') }}"><li>Nouvel événement</li></a>
-                <a class="text-sm-center nav-link text-dark" href="{{ route('compte.user.dashboard') }}"><li>Mon compte</li></a>
+            <ul class="nav flex-row align-items-center ">
+                <a class="text-sm-center nav-link color-white" href="{{ route('accueil.dashboard') }}"><li><img class="logo-header" src="{{ asset('images/logo-header.png') }}" alt=""></li></a>
+                <a class="text-sm-center nav-link color-white" href="{{ route('accueil.dashboard') }}"><li>Mon calendrier</li></a>
+                <a class="text-sm-center nav-link color-white" href="{{ route('new.event.dashboard') }}"><li>Nouvel événement</li></a>
+                <a class="text-sm-center nav-link color-white" href="{{ route('compte.user.dashboard') }}"><li>Mon compte</li></a>
                 @if(Auth::user()->role_user===1)
-                    <a class="text-sm-center nav-link text-dark" href="{{ route('stats.users.dashboard') }}"><li>Statistiques</li></a>
+                    <a class="text-sm-center nav-link color-white" href="{{ route('stats.users.dashboard') }}"><li>Admin</li></a>
                 @endif
-                <a class="position-absolute right-70 text-sm-center nav-link text-dark" href="{{ route('deconnexion') }}"><li>Déconnexion</li></a>
+                <a id="btn-a-deconnexion" class="font-family-roboto fw-bold position-absolute right-70 text-sm-center nav-link color-white bg-color-green border-radius5" href="{{ route('deconnexion') }}"><li class="btn-deconnexion">Déconnexion</li></a>
             </ul>
         </nav>
         @endauth
         @if(Auth::user()=="")
         <nav class="position-relative">
             <ul class="nav flex-row align-items-center">
-                <a class="text-sm-center nav-link text-dark" href="{{ route('accueil') }}"><h1 class="h3 font-family-exo text-uppercase"><li>Calendar Project</li></h1></a>
-                <a class="text-sm-center nav-link text-dark" href="{{ route('accueil') }}"><li>Accueil</li></a>
-                <a class="text-sm-center nav-link text-dark" href="{{ route('connexion') }}"><li>Connexion</li></a>
-                <a class="text-sm-center nav-link text-dark" href="{{ route('inscription') }}"><li>Inscription</li></a>
+                <a class="text-sm-center nav-link color-white" href="{{ route('accueil') }}"><li><img class="logo-header" src="{{ asset('images/logo-header.png') }}" alt=""></li></a>
+                <a class="text-sm-center nav-link color-white" href="{{ route('accueil') }}"><li>Accueil</li></a>
+                <a class="text-sm-center nav-link color-white" href="{{ route('connexion') }}"><li>Connexion</li></a>
+                <a class="text-sm-center nav-link color-white" href="{{ route('inscription') }}"><li>Inscription</li></a>
             </ul>
         </nav>
         @endif
     </header>
-    <div class="height-body container mt-4">
+
 
 
 

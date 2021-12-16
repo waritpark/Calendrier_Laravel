@@ -23,8 +23,9 @@ domReady(function() {
         var var_date = document.getElementById("var_date").value;
         if (var_date == formated_datePlus) {
             var iconcurrent = data.weather[0].icon;
+            var desccurrent = data.weather[0].description;
             var tempcurrent = data.main.temp;
-            document.getElementById("tempcurrent").innerHTML = 'Température : '+''+tempcurrent+''+'°C';
+            document.getElementById("tempcurrent").innerHTML = 'Max : '+''+tempcurrent+''+'°C <br> '+desccurrent+'';
             document.getElementById("meteocurrent").innerHTML = '<img class="meteo-img-event" src="http://openweathermap.org/img/wn/'+iconcurrent+'@2x.png" alt="meteo today">'
         }
     }
@@ -64,8 +65,9 @@ domReady(function() {
                 if (formated_datePlus1 == item1.dt_txt) {
                     // console.log(item1);
                     var iconTomorrow1 = item1.weather[0].icon;
+                    var descTomorrow1 = item1.weather[0].description;
                     var temp1 = item1.main.temp;
-                    document.getElementById("temp1").innerHTML = 'Température : '+''+temp1+''+'°C';
+                    document.getElementById("temp1").innerHTML = 'Max : '+''+temp1+''+'°C <br> '+descTomorrow1+'';
                     document.getElementById("meteoTomorrow1").innerHTML = '<img class="meteo-img-event" src="http://openweathermap.org/img/wn/'+iconTomorrow1+'@2x.png" alt="meteo tomorrow">'
                 }
             })
@@ -85,12 +87,13 @@ domReady(function() {
         // console.log(formated_datePlus2);
         if (formated_bis_datePlus2 == var_date) {
             data.list.forEach(function each(item2) {
-                // console.log(item1);
+                // console.log(item2);
                 if (formated_datePlus2 == item2.dt_txt) {
-                    // console.log(item1);
+                    // console.log(item2);
                     var iconTomorrow2 = item2.weather[0].icon;
+                    var descTomorrow2 = item2.weather[0].description;
                     var temp2 = item2.main.temp;
-                    document.getElementById("temp2").innerHTML = 'Température : '+''+temp2+''+'°C';
+                    document.getElementById("temp2").innerHTML = 'Max : '+''+temp2+''+'°C <br> '+descTomorrow2+'';
                     document.getElementById("meteoTomorrow2").innerHTML = '<img class="meteo-img-event" src="http://openweathermap.org/img/wn/'+iconTomorrow2+'@2x.png" alt="meteo after tomorrow">'
                 }
             })
@@ -110,12 +113,13 @@ domReady(function() {
         // console.log(formated_datePlus3);
         if (formated_bis_datePlus3 == var_date) {
             data.list.forEach(function each(item3) {
-                // console.log(item1);
+                console.log(item3);
                 if (formated_datePlus3 == item3.dt_txt) {
-                    // console.log(item1);
+                    // console.log(item3);
                     var iconTomorrow3 = item3.weather[0].icon;
+                    var descTomorrow3 = item3.weather[0].description;
                     var temp3 = item3.main.temp;
-                    document.getElementById("temp3").innerHTML = 'Température : '+''+temp3+''+'°C';
+                    document.getElementById("temp3").innerHTML = 'Max : '+''+temp3+''+'°C <br> '+descTomorrow3+'';
                     document.getElementById("meteoTomorrow3").innerHTML = '<img class="meteo-img-event" src="http://openweathermap.org/img/wn/'+iconTomorrow3+'@2x.png" alt="meteo after after tomorrow">'
                 }
             })

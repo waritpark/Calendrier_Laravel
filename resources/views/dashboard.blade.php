@@ -1,21 +1,21 @@
 @extends('template')
 
 @section('content')
+<div class="height-body container my-5">
 <div id="meteo"></div>
-    <div class="mb-5 d-flex align-items-center justify-content-center">
+    <div class="mb-3 d-flex align-items-center justify-content-center">
         <a class="arrow-rotate180" href="/calendar/dashboard/<?=$month->previousMonth()->month;?>-<?=$month->previousMonth()->year;?>">
             <img src="/images/arrow.png" class="arrow-btn">
         </a>
-        <h1 class="mx-5 w-300 d-flex justify-content-center"><?php echo $month->toString(); ?></h1>
+        <h1 class="mx-5 w-300 d-flex justify-content-center title-month-<?= $month->toStringMonth() ?>"><?php echo $month->toString(); ?></h1>
         <a class="" href="/calendar/dashboard/<?=$month->nextMonth()->month;?>-<?=$month->nextMonth()->year;?>">
             <img src="/images/arrow.png" class="arrow-btn">
         </a>
     </div>
-<?php echo $response ?>
     <table class="table table-bordered" id="calendar-table">
-        <tr>
+        <tr class="border-none">
         <?php foreach($month->days as $s): ?>
-            <th class="text-center align-middle border"><?php echo $s; ?></th>
+            <th class="text-center align-middle border-none"><?php echo $s; ?></th>
         <?php endforeach; ?>
         </tr>
         <?php for($i = 0; $i < $weeks; $i++) {  ?>
@@ -30,7 +30,7 @@
                 $days = $date->format('d');
 
                 ?>
-                <td class="w-14 align-top position-relative td-month-<?= $month->toStringMonth() ?> <?= $month->withinMonth($date) ? '' : 'bg-second'; ?><?= $isToday ? 'ajout-event-'.$month->toStringMonth().'' : ''; ?>">
+                <td class="w-14 align-top position-relative td-month-<?= $month->toStringMonth() ?> <?= $month->withinMonth($date) ? '' : 'bg-second td-hover-none'; ?><?= $isToday ? 'ajout-event-'.$month->toStringMonth().'' : ''; ?>">
                     <a class="position-absolute h-100 w-100 top-0 right-0" href="/calendar/dashboard/day-evenement/<?=$years?>-<?=$months?>-<?=$days?>"></a>
                     
                         {{-- Affiche l'image de la météo du jour actuel --}}
@@ -70,6 +70,7 @@
             </tr>
         <?php } ?>
     </table>
+</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('javascript/requestsDashboard.js') }}"></script>
 @endsection

@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\MonthController;
+use App\Http\Controllers\EventsController;
 
 class IdentificationController extends Controller
 {
@@ -49,7 +50,8 @@ class IdentificationController extends Controller
             'email' => 'required|max:100|email',
             'name' => 'required|max:100',
             'prenom' => 'required|max:100',
-            'password' => 'required|max:100|min:6'
+            'password' => 'required|max:100|min:6',
+            'password2' => 'required|max:100|min:6'
         ]);
         $user = new User();
         $email = $request->input('email');
@@ -168,8 +170,11 @@ class IdentificationController extends Controller
     public function destroyUser($id) 
     {
         $user=User::find($id);
+        $events = DB::table('events')
+        ->where('user_id', "=", $id)
+        ->delete();
         $user->delete();
-        return redirect()->back()->with("destroy_user", "l'utilisateur à bien été supprimé");
+        return redirect()->back()->with("destroy_user", "l'utilisateur et ses évenements ont bien été supprimé");
     }
 
     public function deconnexion()

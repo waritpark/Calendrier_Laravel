@@ -1,11 +1,12 @@
 
-    </div>
-    <footer class="container-fluid bg-secondary">
-        <div class="container height-100">
-            <div class="d-flex justify-content-around h-100 text-white font-family-roboto align-items-center">
-                <p class="m-0">Projet Calendrier</p>
-                <p class="m-0">Arthur <span class="text-uppercase text-blue"> Lafarge</span></p>
-                <p class="m-0">© 2021</p>
+    <footer class="container-fluid bg-color-white">
+        <div class="container height-60">
+            <div class="d-flex justify-content-center height-60 font-family-roboto align-items-center color-black">
+                <p class="mx-4 mb-0">Project Calendar</p>
+                <span>|</span>
+                <p class="mx-4 mb-0">Arthur <span class="text-uppercase"> Lafarge</span></p>
+                <span>|</span>
+                <p class="mx-4 mb-0">© 2021</p>
             </div>
         </div>
     </footer>
@@ -40,15 +41,15 @@
         function afficherPass() {
             document.getElementById("btnPass").classList.add("d-none");
             document.getElementById("btnCheck").classList.toggle("d-none");
-            document.getElementById('pass1').innerHTML ='<div class="mb-3">'+
+            document.getElementById('pass1').innerHTML ='<div class="">'+
                     '<label for="password" class="form-label">Nouveau mot de passe</label>'+
-                    '<input type="password" autocomplete="off" class="form-control mb-2" onkeyup="logKey()" name="password" id="password">'+
-                    '<div class="mt-2 alert alert-secondary" id="passwordStrength">Jauge de fiabilité du mot de passe</div>'+
+                    '<input type="password" autocomplete="off" class="form-control" onkeyup="logKey()" name="password" id="password">'+
+                    '<div class="alert alert-secondary" id="passwordStrength">Jauge de fiabilité du mot de passe</div>'+
                 '</div>';
             document.getElementById('pass2').innerHTML ='<div class="mb-3">'+
                     '<label for="password2" class="form-label">Répétez le nouveau mot de passe</label>'+
                     '<input type="password" autocomplete="off" onkeyup="checkpass()" class="form-control" name="password2" id="password2">'+
-                    '<div class="mt-2 alert alert-secondary" id="egalpass">Vérification de l\'égalité vos mots de passe</div>'+
+                    '<div class="alert alert-secondary" id="egalpass">Vérification de l\'égalité vos mots de passe</div>'+
                 '</div>';
         }
 
