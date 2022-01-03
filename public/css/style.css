@@ -67,24 +67,27 @@ textarea:focus {
 .border-radius5 {
     border-radius: 5px;
 }
+.border-radius10 {
+    border-radius: 10px;
+}
 .border-none {
     border: none!important;
 }
 
 /* header */
-header nav ul a {
+.bg-black-header nav ul a {
     border-bottom: 1px solid transparent;
     padding: 10px 0px!important;
     margin: 0 15px!important;
 }
-header nav ul a:hover {
+.bg-black-header nav ul a:hover {
     color: #FFFFFF!important;
     border-bottom: 1px solid #ffffff;
 }
-header nav ul a:focus {
+.bg-black-header nav ul a:focus {
     color: #FFFFFF!important;
 }
-header nav ul a:first-child:hover {
+.bg-black-header nav ul a:first-child:hover {
     border-bottom: none;
     border-bottom: 1px solid transparent;
 }
@@ -101,6 +104,19 @@ header nav ul a:first-child:hover {
 #btn-a-deconnexion:focus {
     color: #FFFFFF!important;
 }
+.border-menu {
+    border: 2px solid #5EFFBD;
+    background-color: #5EFFBD;
+}
+#menu-burger {
+    right: 40px;
+    width: 50px;
+    cursor: pointer;
+    z-index: 6000;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgb(255,255,255);
+}
 
 /* accueil */
 .logo-accueil {
@@ -115,7 +131,7 @@ header nav ul a:first-child:hover {
 
 /* height - width & left - right */
 .height-body {
-    min-height: calc(100vh - 156px);
+    min-height: calc(100vh - 168px);
 }
 .height-60 {
     height: 60px;
@@ -148,6 +164,9 @@ header nav ul a:first-child:hover {
 /* margin & padding */
 .mt-200px {
     margin-top: 200px;
+}
+.mt-5px {
+    margin-top: 5px;
 }
 
 /* formulaire connexion */
@@ -185,3 +204,13 @@ header nav ul a:first-child:hover {
     background-color: #FFBF5E!important;
     color: #FFFFFF!important;
 }
+
+
+/***********    responsive    ***********/
+
+@media screen and (max-width: 991px) {
+    body {
+        min-width: 950px;
+    }
+
+  }

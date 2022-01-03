@@ -3,8 +3,8 @@
 @section('content')
 <div class="height-body container mt-4">
     <div class="col-12 mt-4" id="container-form-ajout-event">
-        <div class="col-5 mx-auto">
-            <h2 class="w-100 d-flex justify-content-center color-green m-0 fw-bold">Ajout d'un nouvel événement</h2>
+        <h2 class="w-100 d-flex justify-content-center color-green m-0 fw-bold">Ajout d'un nouvel événement</h2>
+        <div class="col-8 col-xl-5 mx-auto">
             <form action="{{ route('store.event.dashboard') }}" method="post" class="mt-4">
                 @csrf
                 <div class="mb-3">

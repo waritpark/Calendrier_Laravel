@@ -7,8 +7,8 @@
 ?>
 <div class="height-body container mt-4">
     <div class="col-12 mt-4" id="container-form-ajout-event">
-        <div class="col-5 mx-auto">
-            <h2 class="w-100 d-flex justify-content-center color-green m-0 fw-bold">Modifier l'événement : </h2>
+        <h2 class="w-100 d-flex justify-content-center color-green m-0 fw-bold">Modifier l'événement : </h2>
+        <div class="col-8 col-xl-5 mx-auto">
             <form action="{{ route('update.user.dashboard', $user->id) }}" method="POST" class="mt-4">
                 @csrf
                 @method('PUT')

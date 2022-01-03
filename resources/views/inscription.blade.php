@@ -3,7 +3,7 @@
 @section('content')
 <div class="height-body container d-flex justify-content-center flex-column mt-4">
     <div class="row text-center justify-content-center">
-        <div class="col-6">
+        <div class="col-8 col-xl-6">
             <h2 class="color-green text-uppercase fw-bold">Inscription</h2>
             <form action="{{ route('inscription.post')}}" method="post" class="mt-4">
             @csrf

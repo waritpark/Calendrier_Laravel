@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('content')
-<div class="height-body container my-5">
+<div class="height-body container-fluid my-5" id="container-app">
 <div id="meteo"></div>
     <div class="mb-3 d-flex align-items-center justify-content-center">
         <a class="arrow-rotate180" href="/calendar/dashboard/<?=$month->previousMonth()->month;?>-<?=$month->previousMonth()->year;?>">

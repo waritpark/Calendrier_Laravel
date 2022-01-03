@@ -81,8 +81,8 @@
         <button type="button" class="box-shadow-submit btn bg-color-white px-4 py-2 w-auto" id="btn-afficher-form" onclick="afficherForm()">Ajouter un événement</button>
     </div>
     <div class="col-12 d-none mt-4" id="container-form-ajout-event">
-        <div class="col-5 mx-auto">
-            <h2 class="color-green d-flex justify-content-center w-100 m-0 fw-bold mt-5">Ajout d'un nouvel événement</h2>
+        <h2 class="color-green d-flex justify-content-center w-100 m-0 fw-bold mt-5">Ajout d'un nouvel événement</h2>
+        <div class="col-8 col-xl-5 mx-auto">
             <form action="{{ route('store.event.dashboard') }}" method="post" class="mt-4">
                 @csrf
                 <div class="mb-3">

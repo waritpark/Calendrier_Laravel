@@ -10,30 +10,34 @@
     <title>Calendrier</title>
 </head>
 <body>
-    <header class="container-fluid bg-black-header">
+    <header>
         @auth
-        <nav class="position-relative">
-            <ul class="nav flex-row align-items-center ">
-                <a class="text-sm-center nav-link color-white" href="{{ route('accueil.dashboard') }}"><li><img class="logo-header" src="{{ asset('images/logo-header.png') }}" alt=""></li></a>
-                <a class="text-sm-center nav-link color-white" href="{{ route('accueil.dashboard') }}"><li>Mon calendrier</li></a>
-                <a class="text-sm-center nav-link color-white" href="{{ route('new.event.dashboard') }}"><li>Nouvel événement</li></a>
-                <a class="text-sm-center nav-link color-white" href="{{ route('compte.user.dashboard') }}"><li>Mon compte</li></a>
-                @if(Auth::user()->role_user===1)
-                    <a class="text-sm-center nav-link color-white" href="{{ route('stats.users.dashboard') }}"><li>Admin</li></a>
-                @endif
-                <a id="btn-a-deconnexion" class="font-family-roboto fw-bold position-absolute right-70 text-sm-center nav-link color-white bg-color-green border-radius5" href="{{ route('deconnexion') }}"><li class="btn-deconnexion">Déconnexion</li></a>
-            </ul>
-        </nav>
+        <div class="container-fluid bg-black-header">
+            <nav class="position-relative nav-header">
+                <ul class="nav flex-row align-items-center">
+                    <a class="text-sm-center nav-link color-white" href="{{ route('accueil.dashboard') }}"><li><img class="logo-header" src="{{ asset('images/logo-header.png') }}" alt=""></li></a>
+                    <a class="text-sm-center nav-link color-white" href="{{ route('accueil.dashboard') }}"><li>Mon calendrier</li></a>
+                    <a class="text-sm-center nav-link color-white" href="{{ route('new.event.dashboard') }}"><li>Nouvel événement</li></a>
+                    <a class="text-sm-center nav-link color-white" href="{{ route('compte.user.dashboard') }}"><li>Mon compte</li></a>
+                    @if(Auth::user()->role_user===1)
+                        <a class="text-sm-center nav-link color-white" href="{{ route('stats.users.dashboard') }}"><li>Admin</li></a>
+                    @endif
+                    <a id="btn-a-deconnexion" class="font-family-roboto fw-bold position-absolute right-70 text-sm-center nav-link color-white bg-color-green border-radius5" href="{{ route('deconnexion') }}"><li class="btn-deconnexion">Déconnexion</li></a>
+                </ul>
+            </nav>
+        </div>
         @endauth
         @if(Auth::user()=="")
-        <nav class="position-relative">
-            <ul class="nav flex-row align-items-center">
-                <a class="text-sm-center nav-link color-white" href="{{ route('accueil') }}"><li><img class="logo-header" src="{{ asset('images/logo-header.png') }}" alt=""></li></a>
-                <a class="text-sm-center nav-link color-white" href="{{ route('accueil') }}"><li>Accueil</li></a>
-                <a class="text-sm-center nav-link color-white" href="{{ route('connexion') }}"><li>Connexion</li></a>
-                <a class="text-sm-center nav-link color-white" href="{{ route('inscription') }}"><li>Inscription</li></a>
-            </ul>
-        </nav>
+        <div class="container-fluid bg-black-header">
+            <nav class="position-relative nav-header">
+                <ul class="nav flex-row align-items-center">
+                    <a class="text-sm-center nav-link color-white" href="{{ route('accueil') }}"><li><img class="logo-header" src="{{ asset('images/logo-header.png') }}" alt=""></li></a>
+                    <a class="text-sm-center nav-link color-white" href="{{ route('accueil') }}"><li>Accueil</li></a>
+                    <a class="text-sm-center nav-link color-white" href="{{ route('connexion') }}"><li>Connexion</li></a>
+                    <a class="text-sm-center nav-link color-white" href="{{ route('inscription') }}"><li>Inscription</li></a>
+                </ul>
+            </nav>
+        </div>
         @endif
     </header>
 
