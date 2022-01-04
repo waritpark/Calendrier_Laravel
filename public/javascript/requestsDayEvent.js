@@ -19,7 +19,7 @@ domReady(function() {
 
     function current(data) {
         var datePlus = new Date();
-        formated_datePlus = datePlus.getFullYear() + "-" + (datePlus.getMonth()+1) + "-" + datePlus.getDate();
+        formated_datePlus = datePlus.getFullYear() + "-" + '0'+(datePlus.getMonth()+1) + "-" + '0'+datePlus.getDate();
         var var_date = document.getElementById("var_date").value;
         if (var_date == formated_datePlus) {
             var iconcurrent = data.weather[0].icon;
@@ -53,8 +53,8 @@ domReady(function() {
         datePlus1.setSeconds(0);
         datePlus1.setMilliseconds(0);
         // getMonth affiche -1 mois car il commence à 0 pour janvier
-        formated_datePlus1 = datePlus1.getFullYear() + "-" + (datePlus1.getMonth()+1) + "-" + datePlus1.getDate() +' '+ "12:00:00";
-        formated_bis_datePlus1 = datePlus1.getFullYear() + "-" + (datePlus1.getMonth()+1) + "-" + datePlus1.getDate();
+        formated_datePlus1 = datePlus1.getFullYear() + "-" + '0'+(datePlus1.getMonth()+1) + "-" + '0'+datePlus1.getDate() +' '+ "12:00:00";
+        formated_bis_datePlus1 = datePlus1.getFullYear() + "-" + '0'+(datePlus1.getMonth()+1) + "-" + '0'+datePlus1.getDate();
         // console.log(formated_bis_datePlus1);
         // console.log(datePlus1);
         // console.log(formated_datePlus1);
@@ -80,8 +80,8 @@ domReady(function() {
         datePlus2.setMinutes(0);
         datePlus2.setSeconds(0);
         datePlus2.setMilliseconds(0);
-        formated_datePlus2 = datePlus2.getFullYear() + "-" + (datePlus2.getMonth()+1) + "-" + datePlus2.getDate() +' '+ "12:00:00";
-        formated_bis_datePlus2 = datePlus2.getFullYear() + "-" + (datePlus2.getMonth()+1) + "-" + datePlus2.getDate();
+        formated_datePlus2 = datePlus2.getFullYear() + "-" + '0'+(datePlus2.getMonth()+1) + "-" + '0'+datePlus2.getDate() +' '+ "12:00:00";
+        formated_bis_datePlus2 = datePlus2.getFullYear() + "-" + '0'+(datePlus2.getMonth()+1) + "-" + '0'+datePlus2.getDate();
         // console.log(formated_bis_datePlus2);
         // console.log(datePlus2);
         // console.log(formated_datePlus2);
@@ -106,8 +106,8 @@ domReady(function() {
         datePlus3.setMinutes(0);
         datePlus3.setSeconds(0);
         datePlus3.setMilliseconds(0);
-        formated_datePlus3 = datePlus3.getFullYear() + "-" + (datePlus3.getMonth()+1) + "-" + datePlus3.getDate() +' '+ "12:00:00";
-        formated_bis_datePlus3 = datePlus3.getFullYear() + "-" + (datePlus3.getMonth()+1) + "-" + datePlus3.getDate();
+        formated_datePlus3 = datePlus3.getFullYear() + "-" + '0'+(datePlus3.getMonth()+1) + "-" + '0'+datePlus3.getDate() +' '+ "12:00:00";
+        formated_bis_datePlus3 = datePlus3.getFullYear() + "-" + '0'+(datePlus3.getMonth()+1) + "-" + '0'+datePlus3.getDate();
         // console.log(formated_bis_datePlus3);
         // console.log(datePlus3);
         // console.log(formated_datePlus3);

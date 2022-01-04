@@ -47,7 +47,7 @@ domReady(function() {
         datePlus1.setSeconds(0);
         datePlus1.setMilliseconds(0);
         // getMonth affiche -1 mois car il commence à 0 pour janvier
-        formated_datePlus1 = datePlus1.getFullYear() + "-" + (datePlus1.getMonth()+1) + "-" + datePlus1.getDate() +' '+ "12:00:00";
+        formated_datePlus1 = datePlus1.getFullYear() + "-" + '0'+(datePlus1.getMonth()+1) + "-" + '0'+datePlus1.getDate() +' '+ "12:00:00";
         // console.log(datePlus1);
         // console.log(formated_datePlus1);
         // console.log(data.list[0].dt_txt);
@@ -66,7 +66,7 @@ domReady(function() {
         datePlus2.setMinutes(0);
         datePlus2.setSeconds(0);
         datePlus2.setMilliseconds(0);
-        formated_datePlus2 = datePlus2.getFullYear() + "-" + (datePlus2.getMonth()+1) + "-" + datePlus2.getDate() +' '+ "12:00:00";
+        formated_datePlus2 = datePlus2.getFullYear() + "-" + '0'+(datePlus2.getMonth()+1) + "-" + '0'+datePlus2.getDate() +' '+ "12:00:00";
         // console.log(datePlus2);
         // console.log(formated_datePlus2);
         data.list.forEach(function each(item2) {
@@ -80,17 +80,20 @@ domReady(function() {
         // Meteo d'apres demain
         var datePlus3 = new Date();
         datePlus3.setDate(datePlus3.getDate() + 3);
-        datePlus3.setHours(12);
-        datePlus3.setMinutes(0);
-        datePlus3.setSeconds(0);
-        datePlus3.setMilliseconds(0);
-        formated_datePlus3 = datePlus3.getFullYear() + "-" + (datePlus3.getMonth()+1) + "-" + datePlus3.getDate() +' '+ "12:00:00";
+        // datePlus3.setHours(12);
+        // datePlus3.setMinutes(0);
+        // datePlus3.setSeconds(0);
+        // datePlus3.setMilliseconds(0);
+        datePlus3.setUTCHours(12,0,0,0);
+        formated_datePlus3 = datePlus3.getFullYear() + "-" + '0'+(datePlus3.getMonth()+1) + "-" + '0'+datePlus3.getDate() +' '+ "12:00:00";
         // console.log(datePlus3);
+        // console.log(datePlus3.toISOString());
         // console.log(formated_datePlus3);
         data.list.forEach(function each(item3) {
-            // console.log(item3);
+            // console.log(item3.dt_txt);
             if (formated_datePlus3 == item3.dt_txt) {
                 var iconTomorrow3 = item3.weather[0].icon;
+                // console.log(iconTomorrow3);
                 document.getElementById("meteoTomorrow3").innerHTML = '<img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/'+iconTomorrow3+'@2x.png" alt="meteo tomorrow">'
             }
         });
