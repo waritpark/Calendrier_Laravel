@@ -1,6 +1,6 @@
 @if ($message = Session::get('error'))
 {{-- Connexion au dashboard --}}
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-4">
     <div class="col-6">
         <div class="alert alert-danger d-flex justify-content-center">
             <div>{{ $message }}</div>

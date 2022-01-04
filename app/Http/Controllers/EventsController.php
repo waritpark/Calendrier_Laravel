@@ -24,7 +24,7 @@ class EventsController extends Controller
             'start' => 'required|max:100',
             'end' => 'required|max:100',
         ]);
-        
+
         $event = new Events();
         $name = $request->input('name');
         $description = $request->input('description');
@@ -44,15 +44,15 @@ class EventsController extends Controller
                 $event->end = $end;
                 $event->user_id=$user_id;
                 $event->save();
-                return redirect()->route('accueil.dashboard')->with("create", "l'événement à bien été enregistré");
+                return redirect()->route('accueil.dashboard')->with("create", "L'événement à bien été enregistré");
             }
             else {
-                return redirect()->back()->with("error", "l'heure de départ de l'événement doit être inférieur à celle de fin !");
+                return redirect()->back()->with("error", "L'heure de départ de l'événement doit être inférieur à celle de fin !");
             }
         }
     }
 
-    public function viewDay(Request $request) 
+    public function viewDay(Request $request)
     {
         $years = $request->years;
         $months = $request->months;
@@ -88,12 +88,12 @@ class EventsController extends Controller
         ->get();
 
         return view('day-evenement', [
-            'request'=>$request, 
-            'years'=>$years, 
-            'months'=>$months, 
-            'days'=>$days, 
-            'date'=>$date, 
-            'date1'=>$date1, 
+            'request'=>$request,
+            'years'=>$years,
+            'months'=>$months,
+            'days'=>$days,
+            'date'=>$date,
+            'date1'=>$date1,
             'dataDate'=>$dataDate,
             'events'=>$events,
             'newDate'=>$newDate,
@@ -103,7 +103,7 @@ class EventsController extends Controller
         ]);
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         $event=Events::find($id);
         return view('update-evenement', ['event'=>$event]);
@@ -111,7 +111,7 @@ class EventsController extends Controller
 
     public function update(Request $request, $id) {
         // dd($id, $request);
-        
+
         $request->validate([
             'name' => 'required|max:100',
             'description' => 'max:255',
@@ -128,21 +128,29 @@ class EventsController extends Controller
         $end = $request->input('end');
         $end = date_create_from_format('Y-m-d H:i', $date. ' ' .$end)->format('Y-m-d H:i:s');
 
-        // condition isset et empty 
+        // condition isset et empty avec description
         if ($request->filled('name') && $request->filled('description') && $request->filled('date') && $request->filled('start') && $request->filled('end')) {
-            $event->name = $name;
-            $event->description = $description;
-            $event->start = $start;
-            $event->end = $end;
-            $event->save();
-            return redirect()->route('accueil.dashboard')->with("update", "l'événement à bien été modifié");
+            if ($request->input('start') < $request->input('end')) {
+                $event->name = $name;
+                $event->description = $description;
+                $event->start = $start;
+                $event->end = $end;
+                $event->save();
+                return redirect()->route('accueil.dashboard')->with("update", "L'événement à bien été modifié");
+            }
+            else {
+                return redirect()->back()->with("error", "L'heure de départ de l'événement doit être inférieur à celle de fin !");
+            }
+        }
+        else {
+            return redirect()->back()->with("error", "Pour modifier un événement vous devez remplir tous les champs !");
         }
     }
 
-    public function destroy($id) 
+    public function destroy($id)
     {
         $event=Events::find($id);
         $event->delete();
-        return redirect()->back()->with("destroy", "l'événement à bien été supprimé");
+        return redirect()->back()->with("destroy", "L'événement à bien été supprimé");
     }
 }
