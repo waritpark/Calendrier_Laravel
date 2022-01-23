@@ -53,8 +53,20 @@ domReady(function() {
         datePlus1.setSeconds(0);
         datePlus1.setMilliseconds(0);
         // getMonth affiche -1 mois car il commence à 0 pour janvier
-        formated_datePlus1 = datePlus1.getFullYear() + "-" + '0'+(datePlus1.getMonth()+1) + "-" + '0'+datePlus1.getDate() +' '+ "12:00:00";
-        formated_bis_datePlus1 = datePlus1.getFullYear() + "-" + '0'+(datePlus1.getMonth()+1) + "-" + '0'+datePlus1.getDate();
+        if(datePlus1.getMonth() >= 10){
+            datePlus1GetMonth = (datePlus1.getMonth()+1);
+        }
+        else {
+            datePlus1GetMonth = '0'+(datePlus1.getMonth()+1);
+        }
+        if (datePlus1.getDate() >= 10) {
+            datePlus1GetDate = datePlus1.getDate();
+        }
+        else {
+            datePlus1GetDate = '0'+datePlus1.getDate();
+        }
+        formated_datePlus1 = datePlus1.getFullYear() + "-" + datePlus1GetMonth + "-" + datePlus1GetDate +' '+ "12:00:00";
+        formated_bis_datePlus1 = datePlus1.getFullYear() + "-" + datePlus1GetMonth + "-" + datePlus1GetDate;
         // console.log(formated_bis_datePlus1);
         // console.log(datePlus1);
         // console.log(formated_datePlus1);
@@ -76,12 +88,21 @@ domReady(function() {
         // Meteo d'apres demain
         var datePlus2 = new Date();
         datePlus2.setDate(datePlus2.getDate() + 2);
-        datePlus2.setHours(12);
-        datePlus2.setMinutes(0);
-        datePlus2.setSeconds(0);
-        datePlus2.setMilliseconds(0);
-        formated_datePlus2 = datePlus2.getFullYear() + "-" + '0'+(datePlus2.getMonth()+1) + "-" + '0'+datePlus2.getDate() +' '+ "12:00:00";
-        formated_bis_datePlus2 = datePlus2.getFullYear() + "-" + '0'+(datePlus2.getMonth()+1) + "-" + '0'+datePlus2.getDate();
+        datePlus2.setUTCHours(12,0,0,0);
+        if(datePlus2.getMonth() >= 10){
+            datePlus2GetMonth = (datePlus2.getMonth()+1);
+        }
+        else {
+            datePlus2GetMonth = '0'+(datePlus2.getMonth()+1);
+        }
+        if (datePlus2.getDate() >= 10) {
+            datePlus2GetDate = datePlus2.getDate();
+        }
+        else {
+            datePlus2GetDate = '0'+datePlus2.getDate();
+        }
+        formated_datePlus2 = datePlus2.getFullYear() + "-" + datePlus2GetMonth + "-" + datePlus2GetDate +' '+ "12:00:00";
+        formated_bis_datePlus2 = datePlus2.getFullYear() + "-" + datePlus2GetMonth + "-" + datePlus2GetDate;
         // console.log(formated_bis_datePlus2);
         // console.log(datePlus2);
         // console.log(formated_datePlus2);
@@ -102,12 +123,21 @@ domReady(function() {
         // Meteo d'apres d'apres demain
         var datePlus3 = new Date();
         datePlus3.setDate(datePlus3.getDate() + 3);
-        datePlus3.setHours(12);
-        datePlus3.setMinutes(0);
-        datePlus3.setSeconds(0);
-        datePlus3.setMilliseconds(0);
-        formated_datePlus3 = datePlus3.getFullYear() + "-" + '0'+(datePlus3.getMonth()+1) + "-" + '0'+datePlus3.getDate() +' '+ "12:00:00";
-        formated_bis_datePlus3 = datePlus3.getFullYear() + "-" + '0'+(datePlus3.getMonth()+1) + "-" + '0'+datePlus3.getDate();
+        datePlus3.setUTCHours(12,0,0,0);
+        if(datePlus3.getMonth() >= 10){
+            datePlus3GetMonth = (datePlus3.getMonth()+1);
+        }
+        else {
+            datePlus3GetMonth = '0'+(datePlus3.getMonth()+1);
+        }
+        if (datePlus3.getDate() >= 10) {
+            datePlus3GetDate = datePlus3.getDate();
+        }
+        else {
+            datePlus3GetDate = '0'+datePlus3.getDate();
+        }
+        formated_datePlus3 = datePlus3.getFullYear() + "-" + datePlus3GetMonth + "-" + datePlus3GetDate +' '+ "12:00:00";
+        formated_bis_datePlus3 = datePlus3.getFullYear() + "-" + datePlus3GetMonth + "-" + datePlus3GetDate;
         // console.log(formated_bis_datePlus3);
         // console.log(datePlus3);
         // console.log(formated_datePlus3);
