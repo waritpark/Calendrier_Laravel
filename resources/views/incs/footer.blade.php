@@ -6,7 +6,7 @@
                 <span class="separate-footer">|</span>
                 <p class="py-4 mx-4 mb-0">Arthur <span class="text-uppercase"> Lafarge</span></p>
                 <span class="separate-footer">|</span>
-                <p class="py-4 mx-4 mb-0">© 2021</p>
+                <p class="py-4 mx-4 mb-0">© 2022</p>
             </div>
         </div>
     </footer>
