@@ -62,18 +62,24 @@ class IdentificationController extends Controller
         $role_user = 2;
         // condition isset et empty
         if ($request->filled('email') && $request->filled('name') && $request->filled('prenom') && $request->filled('password') && $request->filled('password2')) {
-            // condition de l'égalité des mdp
-            if ($password === $password2) {
-                $user->email = $email;
-                $user->name = $name;
-                $user->prenom = $prenom;
-                $user->password = Hash::make($password);
-                $user->role_user = $role_user;
-                $user->save();
-                return redirect()->route('connexion');
+            // condition vérifier si mail existe deja ou non
+            if (User::where('email', '=', $email)->exists()) {
+                return redirect()->back()->with('error', "l'adresse mail est deja utilisée !");
             }
             else {
-                return redirect()->back()->with('error', 'les mots de passe doivent être identique !');
+                // condition de l'égalité des mdp
+                if ($password === $password2) {
+                    $user->email = $email;
+                    $user->name = $name;
+                    $user->prenom = $prenom;
+                    $user->password = Hash::make($password);
+                    $user->role_user = $role_user;
+                    $user->save();
+                    return redirect()->route('connexion');
+                }
+                else {
+                    return redirect()->back()->with('error', 'les mots de passe doivent être identique !');
+                }
             }
         }
         // le else est en commentaire car il y a deja un retour si les champs ne sont pas correctement remplis, cela ferait 2 erreurs affichés pour la meme erreur

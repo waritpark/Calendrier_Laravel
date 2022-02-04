@@ -84,7 +84,7 @@ class EventsController extends Controller
         $id_user =  $request->session()->get('id_user');
         $events = DB::table('events')
         ->where('user_id', "=", $id_user)
-        ->whereBetween('start', [$date->format('Y-m-d 00:00:00'),$date->format('Y-m-d 23:59:59')])
+        ->whereBetween('start', [$date->format('Y-m-d 00:00:00'), $date->format('Y-m-d 23:59:59')])
         ->get();
 
         return view('day-evenement', [
