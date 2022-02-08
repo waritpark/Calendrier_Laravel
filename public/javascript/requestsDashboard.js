@@ -19,7 +19,7 @@ domReady(function() {
     });
 
     function current(data) {
-        // console.log(data);
+        console.log(data);
         var iconcurrent = data.weather[0].icon;
         document.getElementById("meteocurrent").innerHTML = '<img class="position-absolute meteo-img top-0 right-0" src="http://openweathermap.org/img/wn/'+iconcurrent+'@2x.png" alt="meteo today">'
     }
@@ -117,7 +117,7 @@ domReady(function() {
         formated_datePlus3 = datePlus3.getFullYear() + "-" + datePlus3GetMonth + "-" + datePlus3GetDate +' '+ "12:00:00";
         // console.log(datePlus3);
         // console.log(datePlus3.toISOString());
-        console.log(formated_datePlus3);
+        // console.log(formated_datePlus3);
         data.list.forEach(function each(item3) {
             // console.log(item3.dt_txt);
             if (formated_datePlus3 == item3.dt_txt) {
