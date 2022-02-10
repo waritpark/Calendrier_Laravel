@@ -32,7 +32,7 @@
                 ?>
                 <td class="w-14 align-top position-relative td-month-<?= $month->toStringMonth() ?> <?= $month->withinMonth($date) ? '' : 'bg-second td-hover-none'; ?><?= $isToday ? 'ajout-event-'.$month->toStringMonth().'' : ''; ?>">
                     <a class="position-absolute h-100 w-100 top-0 right-0" href="/calendar/dashboard/day-evenement/<?=$years?>-<?=$months?>-<?=$days?>"></a>
-                    
+
                         {{-- Affiche l'image de la météo du jour actuel --}}
                         <?php if ($isToday == $date): ?>
                             <span id="meteocurrent"></span>
@@ -72,5 +72,5 @@
     </table>
 </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('javascript/requestsDashboard.js') }}"></script>
+    <script src="{{{  asset('javascript/requestsDashboard.js')  }}}"></script>
 @endsection
