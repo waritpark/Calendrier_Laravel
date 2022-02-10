@@ -107,6 +107,7 @@
 /* width - height & left - right */
 #calendar-table {
     min-height: 500px;
+    max-width: 1700px;
 }
 #calendar-table td {
     height: 130px;

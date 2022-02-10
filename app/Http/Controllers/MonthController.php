@@ -156,7 +156,7 @@ class MonthController extends Controller
     }
 
     /**
-     * Renvoie le mois précédent
+     * Renvoie le mois précédant
      * @return MonthController;
      */
     public function previousMonth(): MonthController 

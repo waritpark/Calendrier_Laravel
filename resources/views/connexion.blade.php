@@ -1,9 +1,9 @@
 @extends('template')
 
 @section('content')
-<div class="height-body d-flex justify-content-center flex-column container">
-    <div class="row text-center justify-content-center">
-        <div class="col-7 col-xl-6">
+<div class="height-body d-flex flex-column container mt-4">
+    <div class="row text-center justify-content-center mt-5">
+        <div class="col-6">
             <h2 class="color-green text-uppercase fw-bold">Connexion</h2>
             <form action="connexion" method="post" class="mt-4">
                 @csrf

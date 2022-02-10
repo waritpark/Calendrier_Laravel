@@ -71,6 +71,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+    // Intelephense a du mal à gérer certaines méthodes dans Laravel.
     protected function respondWithToken($token)
     {
         return response()->json([

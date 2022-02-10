@@ -13,6 +13,12 @@ use App\Http\Controllers\api\UserController;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
+|php artisan route:cache 
+|php artisan cache:clear
+|php artisan view:clear
+|php artisan config:cache
+|php artisan optimize
+|
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -29,7 +35,4 @@ Route::group([
     Route::post('login', [UserController::class, 'login']);
     Route::get('events', [UserController::class, 'eventByDay']);
     Route::post('logout', [UserController::class, 'logout']);
-    // Route::post('refresh', 'AuthController@refresh');
-    // Route::post('me', 'AuthController@me');
-
 });
