@@ -12,7 +12,7 @@
             <img src="/images/arrow.png" class="arrow-btn">
         </a>
     </div>
-    <table class="table table-bordered mx-auto" id="calendar-table">
+    <table class="table table-bordered" id="calendar-table">
         <tr class="border-none">
         <?php foreach($month->days as $s): ?>
             <th class="text-center align-middle border-none"><?php echo $s; ?></th>
@@ -72,5 +72,5 @@
     </table>
 </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{{  asset('javascript/requestsDashboard.js')  }}}"></script>
+    <script src="{{ asset('javascript/requestsDashboard.js') }}"></script>
 @endsection

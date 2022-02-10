@@ -25,8 +25,8 @@
                     <td><?= $user->role_user; ?></td>
                     @if ($user->email != 'arthur@arthur.fr')
                         <td>
-                            <a class="a-img-day-event btn bg-color-yellow me-2" href="{{{  route('edit.user.dashboard', $user->id)  }}}"><img class="img-day-event" src="{{{  asset('images/edit.png')  }}}" alt="edit"></a>
-                            <a class="a-img-day-event btn bg-color-red" href="{{{  route('destroy.user.dashboard', $user->id)  }}}"><img class="img-day-event" src="{{{  asset('images/trash.png')  }}}" alt="trash"></a>
+                            <a class="a-img-day-event btn bg-color-yellow me-2" href="{{ route('edit.user.dashboard', $user->id) }}"><img class="img-day-event" src="{{ asset('images/edit.png') }}" alt="edit"></a>
+                            <a class="a-img-day-event btn bg-color-red" href="{{ route('destroy.user.dashboard', $user->id) }}"><img class="img-day-event" src="{{ asset('images/trash.png') }}" alt="trash"></a>
                         </td>
                     @else
                         <td></td>

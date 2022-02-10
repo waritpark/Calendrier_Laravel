@@ -1,9 +1,9 @@
 @extends('template')
 
 @section('content')
-<div class="height-body d-flex flex-column container mt-4">
-    <div class="row text-center justify-content-center mt-5">
-        <div class="col-6">
+<div class="height-body d-flex justify-content-center flex-column container">
+    <div class="row text-center justify-content-center">
+        <div class="col-7 col-xl-6">
             <h2 class="color-green text-uppercase fw-bold">Connexion</h2>
             <form action="connexion" method="post" class="mt-4">
                 @csrf
@@ -11,14 +11,14 @@
                     <label for="email" class="form-label">Adresse mail</label>
                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email">
                     @error('email')
-                        <div class="alert alert-danger">{{{   $message   }}}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Mot de passe</label>
                     <input type="password" autocomplete="off" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
                     @error('password')
-                        <div class="alert alert-danger">{{{  $message  }}}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="d-flex justify-content-between" id="password-forget">

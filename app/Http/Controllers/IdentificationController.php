@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\MonthController;
-use App\Http\Controllers\EventsController;
 
 class IdentificationController extends Controller
 {
@@ -25,7 +23,7 @@ class IdentificationController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-   
+
         $credentials = $request->only('email', 'password');
         if ($request->filled('email') && $request->filled('password')) {
             if (Auth::attempt($credentials)) {
@@ -96,7 +94,7 @@ class IdentificationController extends Controller
         return view('stats', ['users'=>$users]);
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         $user = User::find($id);
         return view('update-user', ['user'=>$user]);
@@ -151,7 +149,7 @@ class IdentificationController extends Controller
             if ($request->missing('password') || $request->missing('password2')) {
                 $user->save();
                 return redirect()->route('accueil.dashboard')->with('update_compte', 'modification éffectuée !');
-            } 
+            }
             // condition avec les mdp
             elseif ($request->filled('password') && $request->filled('password2') && $password===$password2) {
                 $request->validate([
@@ -173,7 +171,7 @@ class IdentificationController extends Controller
         // }
     }
 
-    public function destroyUser($id) 
+    public function destroyUser($id)
     {
         $user=User::find($id);
         $events = DB::table('events')

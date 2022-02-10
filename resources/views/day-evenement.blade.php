@@ -71,8 +71,8 @@
                         <td><?php echo $event->name; ?></td>
                         <td><?php echo $event->description;?></td>
                         <td>
-                            <a class="a-img-day-event btn bg-color-yellow me-2" href="{{{  route('edit.event.dashboard', $event->id)  }}}"><img class="img-day-event" src="{{{  asset('images/edit.png')  }}}" alt="edit"></a>
-                            <a class="a-img-day-event btn bg-color-red" href="{{{  route('delete.event.dashboard', $event->id)  }}}"><img class="img-day-event" src="{{{  asset('images/trash.png')  }}}" alt="trash"></a>
+                            <a class="a-img-day-event btn bg-color-yellow me-2" href="{{ route('edit.event.dashboard', $event->id) }}"><img class="img-day-event" src="{{ asset('images/edit.png') }}" alt="edit"></a>
+                            <a class="a-img-day-event btn bg-color-red" href="{{ route('delete.event.dashboard', $event->id) }}"><img class="img-day-event" src="{{ asset('images/trash.png') }}" alt="trash"></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -83,7 +83,7 @@
     <div class="col-12 d-none mt-4" id="container-form-ajout-event">
         <h2 class="color-green d-flex justify-content-center w-100 m-0 fw-bold mt-5">Ajout d'un nouvel événement</h2>
         <div class="col-8 col-xl-5 mx-auto">
-            <form action="{{{  route('store.event.dashboard')  }}}" method="post" class="mt-4">
+            <form action="{{ route('store.event.dashboard') }}" method="post" class="mt-4">
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Nom</label>
@@ -115,6 +115,6 @@
 </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{{  asset('javascript/requestsDayEvent.js')  }}}"></script>
+    <script src="{{ asset('javascript/requestsDayEvent.js') }}"></script>
 
 @endsection

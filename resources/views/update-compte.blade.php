@@ -4,7 +4,7 @@
 <div class="height-body container mt-4">
     <h2 class="d-flex justify-content-center w-100 color-green w-max-content m-0 fw-bold">Modifier les informations</h2>
     <div class="col-8 col-xl-5 mx-auto">
-        <form action="{{{  route('update.compte.dashboard')  }}}" method="post" class="mt-4">
+        <form action="{{ route('update.compte.dashboard') }}" method="post" class="mt-4">
             @csrf
             @method('PUT')
             <div class="mb-3">
