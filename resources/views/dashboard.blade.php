@@ -12,7 +12,7 @@
             <img src="/images/arrow.png" class="arrow-btn">
         </a>
     </div>
-    <table class="table table-bordered" id="calendar-table">
+    <table class="table table-bordered mx-auto" id="calendar-table">
         <tr class="border-none">
         <?php foreach($month->days as $s): ?>
             <th class="text-center align-middle border-none"><?php echo $s; ?></th>
@@ -62,7 +62,7 @@
                     @foreach ($events as $event)
                         <div class="container-calendar-event d-flex align-items-center fs-6">
                             <div><?= (new DateTimeImmutable($event->start))->format('H:i'); ?>&nbsp;-&nbsp;</div>
-                            <div><?= $event->name ?></div>
+                            <div>{{ $event->name }}</div>
                         </div>
                     @endforeach
                 </td>

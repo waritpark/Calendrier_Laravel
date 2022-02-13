@@ -65,17 +65,17 @@
                 </tr>
             </thead>
             <tbody class="align-middle">
-                <?php foreach($events as $event): ?>
+                @foreach($events as $event)
                     <tr class="align-items-center fs-6">
                         <td><?php echo (new DateTimeImmutable($event->start))->format('H:i'); ?></td>
-                        <td><?php echo $event->name; ?></td>
-                        <td><?php echo $event->description;?></td>
+                        <td> {{ $event->name; }} </td>
+                        <td>{{ $event->description; }}</td>
                         <td>
                             <a class="a-img-day-event btn bg-color-yellow me-2" href="{{ route('edit.event.dashboard', $event->id) }}"><img class="img-day-event" src="{{ asset('images/edit.png') }}" alt="edit"></a>
                             <a class="a-img-day-event btn bg-color-red" href="{{ route('delete.event.dashboard', $event->id) }}"><img class="img-day-event" src="{{ asset('images/trash.png') }}" alt="trash"></a>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                @endforeach
             </tbody>
         </table>
         <button type="button" class="box-shadow-submit btn bg-color-white px-4 py-2 w-auto" id="btn-afficher-form" onclick="afficherForm()">Ajouter un événement</button>
