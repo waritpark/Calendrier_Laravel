@@ -20,8 +20,8 @@ class IdentificationController extends Controller
     public function connexionPost(Request $request)
     {
         $request->validate([
-            'email' => 'required',
-            'password' => 'required',
+            'email' => 'required|max:100|email',
+            'password' => 'required|max:100|min:6',
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -32,7 +32,8 @@ class IdentificationController extends Controller
                 return redirect()->route('accueil.dashboard');
                 // dd($request); dd = dump and die
             }
-            return redirect()->route("connexion")->with('error', 'Email ou mot de passe incorrect');
+            return redirect()->route("connexion")
+            ->with('error', 'Email ou mot de passe incorrect');
         }
     }
 
@@ -59,7 +60,9 @@ class IdentificationController extends Controller
         $password2 = $request->input('password2');
         $role_user = 2;
         // condition isset et empty
-        if ($request->filled('email') && $request->filled('name') && $request->filled('prenom') && $request->filled('password') && $request->filled('password2')) {
+        if ($request->filled('email') && $request->filled('name') && $request->filled('prenom')
+        && $request->filled('password')
+        && $request->filled('password2')) {
             // condition vérifier si mail existe deja ou non
             if (User::where('email', '=', $email)->exists()) {
                 return redirect()->back()->with('error', "l'adresse mail est deja utilisée !");
@@ -76,7 +79,8 @@ class IdentificationController extends Controller
                     return redirect()->route('connexion');
                 }
                 else {
-                    return redirect()->back()->with('error', 'les mots de passe doivent être identique !');
+                    return redirect()->back()
+                    ->with('error', 'les mots de passe doivent être identique !');
                 }
             }
         }
@@ -114,14 +118,13 @@ class IdentificationController extends Controller
         $user->prenom = $request->input('prenom');
         $user->role_user = $request->input('role_user');
         // condition isset et empty
-        if($request->filled('email') && $request->filled('name') && $request->filled('prenom') && $request->filled('role_user')) {
+        if($request->filled('email') && $request->filled('name')
+        && $request->filled('prenom')
+        && $request->filled('role_user')) {
             $user->save();
-            return redirect()->route('stats.users.dashboard')->with('update_user', 'modification éffectué !');
+            return redirect()->route('stats.users.dashboard')
+            ->with('update_user', 'modification éffectué !');
         }
-        // le else est en commentaire car il y a deja un retour si les champs ne sont pas correctement remplis, cela ferait 2 erreurs affichés pour la meme erreur
-        // else {
-        //     return redirect()->back()->with('error', 'Tous les champs doivent être remplis !');
-        // }
     }
 
     public function viewCompte()
@@ -178,7 +181,10 @@ class IdentificationController extends Controller
         ->where('user_id', "=", $id)
         ->delete();
         $user->delete();
-        return redirect()->back()->with("destroy_user", "l'utilisateur et ses évenements ont bien été supprimé");
+        return redirect()->back()
+        ->with("destroy_user",
+        "l'utilisateur et ses évenements
+        ont bien été supprimé");
     }
 
     public function deconnexion()

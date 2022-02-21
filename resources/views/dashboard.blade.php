@@ -14,7 +14,9 @@
     </div>
     <table class="table table-bordered mx-auto" id="calendar-table">
         <tr class="border-none">
-        <?php foreach($month->days as $s): ?>
+        <?php foreach($month->days as $s):
+        // dd($month)
+        ?>
             <th class="text-center align-middle border-none"><?php echo $s; ?></th>
         <?php endforeach; ?>
         </tr>
@@ -23,6 +25,7 @@
             <?php
             foreach($month->days as $k => $day):
                 $date = $start->modify("+" . ($k + $i * 7). "days");
+                // dd($date);
                 $isToday = date('Y-m-d') === $date->format('Y-m-d');
 
                 $years = $date->format('Y');
@@ -30,8 +33,11 @@
                 $days = $date->format('d');
 
                 ?>
-                <td class="w-14 align-top position-relative td-month-<?= $month->toStringMonth() ?> <?= $month->withinMonth($date) ? '' : 'bg-second td-hover-none'; ?><?= $isToday ? 'ajout-event-'.$month->toStringMonth().'' : ''; ?>">
-                    <a class="position-absolute h-100 w-100 top-0 right-0" href="/calendar/dashboard/day-evenement/<?=$years?>-<?=$months?>-<?=$days?>"></a>
+                <td class="w-14 align-top position-relative td-month-<?= $month->toStringMonth() ?>
+                    <?= $month->withinMonth($date) ? '' : 'bg-second td-hover-none'; ?>
+                    <?= $isToday ? 'ajout-event-'.$month->toStringMonth().'' : ''; ?>">
+                    <a class="position-absolute h-100 w-100 top-0 right-0"
+                       href="/calendar/dashboard/day-evenement/<?=$years?>-<?=$months?>-<?=$days?>"></a>
 
                         {{-- Affiche l'image de la météo du jour actuel --}}
                         <?php if ($isToday == $date): ?>

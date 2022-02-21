@@ -53,7 +53,7 @@
                 '</div>';
         }
 
-        // Afficher l'input password2 pour changer de mdp
+        // Supprime le contenu pour changer de mdp
         function suppPass() {
             document.getElementById("btnCheck").classList.toggle("d-none");
             document.getElementById("btnPass").classList.remove("d-none");

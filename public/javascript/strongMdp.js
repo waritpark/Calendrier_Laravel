@@ -1,4 +1,4 @@
-// vérifier la complexité du mdp 
+// vérifier la complexité du mdp
 
 function logKey() {
     var mdp = document.getElementById('password').value;
@@ -22,7 +22,7 @@ function logKey() {
     } else {
         verifmdp.classList.remove('alert-secondary','alert-danger','alert-success','alert-info');
         verifmdp.classList.add('alert-danger');
-        verifmdp.innerHTML='Fiabilité du mot de passe : mauvais.';
+        verifmdp.innerHTML='Fiabilité du mot de passe : mauvaise.';
     }
     return true;
 };
